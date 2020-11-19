@@ -39,6 +39,12 @@ def get_items(base_url, section_prefix, sections):
                 title = re.sub(r'\s+', r' ', title)
                 title = re.sub(r'(\S-)\s+', r'\1', title)
 
+                # Detect item target section
+                if title.startswith('Купон '):
+                    target_section = 'Купоны'
+                else:
+                    target_section = section
+
                 # Process picture URLs
                 is_available = item.is_available and bool(item.small_pic)  # deactivate items with no picture
                 small_pic = (base_url + item.small_pic.strip()) if (item.small_pic is not None) else None
@@ -49,7 +55,7 @@ def get_items(base_url, section_prefix, sections):
                     is_available=is_available,
                     small_pic=small_pic,
                     large_pic=large_pic,
-                    section=section,
+                    section=target_section,
                     dest_id=item.dest_id,
                 ))
 
