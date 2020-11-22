@@ -3,7 +3,7 @@ import urllib.request
 
 
 def fetch(url, encoding='utf-8'):
-    print('fetch ' + url)
+    print('- fetch ' + url)
     response = urllib.request.urlopen(url)
     return response.read().decode(encoding)
 
