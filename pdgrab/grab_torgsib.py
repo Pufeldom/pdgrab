@@ -56,6 +56,7 @@ def get_items(base_url, section_prefix, sections):
                     small_pic=small_pic,
                     large_pic=large_pic,
                     section=target_section,
+                    subsection=item.section,
                     dest_id=item.dest_id,
                 ))
 
@@ -125,6 +126,7 @@ class TorgsibPageParser(HTMLParser, ABC):
             if (self._content_nesting is not None) and (self._item_nesting is None):
                 self._item_nesting = 0
                 self._current_item = PdgrabRawItem()
+                self._current_item.section = self.title
                 self._current_item.dest_id = attrib['id'][4:].lower()
 
         if (self._content_nesting == 1) and (sel == 'h1') and (self.title is None) and (not self._read_title):
