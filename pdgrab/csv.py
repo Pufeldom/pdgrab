@@ -22,7 +22,6 @@ def write_file(file_path, items):
                 value = value.replace('@title', item.title)
                 value = value.replace('@slug', item.slug)
                 value = value.replace('@section', item.section)
-                value = value.replace('@subsection', item.subsection)
                 value = value.replace('@small_pic', item.small_pic or '')
                 value = value.replace('@large_pic', item.large_pic or '')
                 values[k] = value
