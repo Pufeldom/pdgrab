@@ -2,6 +2,9 @@ import re
 import urllib.request
 
 
+MAX_ITEMS_PER_SECTION = 100
+
+
 def fetch(url, encoding='utf-8'):
     print('- fetch ' + url)
     response = urllib.request.urlopen(url)
