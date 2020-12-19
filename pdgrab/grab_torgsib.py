@@ -23,6 +23,10 @@ def get_items(base_url, section_prefix, sections):
         if result.items:
             for item in result.items:
 
+                # Skip items with no pic
+                if item.large_pic is None:
+                    continue
+
                 # Drop unneeded title suffix
                 title = item.title
                 title_redundant_suffix = 'Мебельная ткань'
