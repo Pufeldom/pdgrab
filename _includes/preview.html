@@ -1,0 +1,15 @@
+{% capture preview_url %}
+    {% assign item=include.item %}
+    {% if item.image %}
+        {% assign detail_url = item.image %}
+        {% if item.pmurl %}
+            {% assign detail_url_parts = detail_url | split:"/" %}
+            {% assign detail_uripart = detail_url_parts[3] %}
+            {% assign preview_uripart = item.pmurl | split:"/" | last %}
+            {% assign preview_url = detail_url | replace:detail_uripart,preview_uripart %}
+        {% else %}
+            {% assign preview_url = detail_url %}
+        {% endif %}
+    {% endif %}
+    {{ preview_url }}
+{% endcapture %}{{ preview_url | strip }}

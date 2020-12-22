@@ -1,0 +1,10 @@
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - pdgrab
+  - '*.py'
+  - 'items-*.csv'
+
+collections:
+  items:
+    output: false
