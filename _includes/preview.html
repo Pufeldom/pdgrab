@@ -1,5 +1,6 @@
 {% capture preview_url %}
     {% assign item=include.item %}
+    {% assign preview_url = "" %}
     {% if item.image %}
         {% assign detail_url = item.image %}
         {% if item.pmurl %}
