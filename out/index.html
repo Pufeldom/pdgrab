@@ -1,0 +1,36 @@
+---
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>items</title>
+    <style>
+        ul { padding-left: 0; margin-left: 0; }
+        ul li { padding-left: 0; margin-left: 20px; display: inline-block; list-style-type: none; }
+        table { border-collapse: collapse; }
+        table td { padding: 5px; border: 1px solid #777; }
+        table tr:nth-child(2n+1) { background-color: #eee; }
+        img { border-width: 0; height: 50px; vertical-align: top; }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li><a href="bitrix.csv" download>bitrix.csv</a></li>
+    <li><a href="youla.xml" download>youla.xml</a></li>
+</ul>
+
+<table>
+{% for item in site.items %}
+    <tr>
+        <td>{{ item.slug }}</td>
+        <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
+        <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}"><img src="{{ item.image }}"></a></td>
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
