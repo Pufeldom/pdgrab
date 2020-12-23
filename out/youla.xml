@@ -1,0 +1,24 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog date="{{ site.time | date:'%Y-%m-%d %H:%M' }}">
+    <shop>
+        <offers>
+{% for item in site.items %}{% if item.active %}{% if item.image %}
+            <offer id="{{ item.slug }}">
+                <title><![CDATA[{{ item.title }}]]></title>
+                <price>{{ item.price }}</price>
+                <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
+                <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
+                <description><![CDATA[{{ item.content | strip }}]]></description>
+                <url>http://pufeldom.ru/katalog/item/{% include hru.html item=item %}/</url>
+                <youlaCategoryId>4</youlaCategoryId>
+                <youlaSubcategoryId>410</youlaSubcategoryId>
+                <managerName>Пуфельдом Pufeldom</managerName>
+                <phone>8 913 470-58-88</phone>
+                <address>Новосибирск</address>
+            </offer>
+{% endif %}{% endif %}{% endfor %}
+        </offers>
+    </shop>
+</yml_catalog>
