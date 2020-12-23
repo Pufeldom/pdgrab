@@ -18,6 +18,7 @@
 <body>
 
 <ul>
+    <li><a href="https://github.com/thybzi/pdgrab/new/master/" id="new-link" target="_blank">NEW ITEM</a></li>
     <li><a href="bitrix.csv" download>bitrix.csv</a></li>
     <li><a href="youla.xml" download>youla.xml</a></li>
 </ul>
@@ -31,6 +32,50 @@
     </tr>
 {% endfor %}
 </table>
+
+<template id="new">---
+hru: Символьный код (можно пустой)
+title: Название товара
+price: 4200
+section: Пуфы
+color: Красный
+shape: Прямоугольный
+width: 900
+depth: 400
+height: 450
+material: Велюр
+legs: Пластик
+martindale: Тест Мартиндейла
+density: Плотность ткани
+weight: Вес в кг
+pmurl: Поле "Link" c postimages.org
+image: Поле "Direct link" c postimages.org
+gallery:
+  - Первая картинка, поле "Direct link" c postimages.org
+  - Вторая картинка, поле "Direct link" c postimages.org
+  - и т.д., можно добавлять/удалять строки (в т.ч. удалить все)
+new: true
+active: true
+---
+
+Описание товара.
+Можно многострочное.
+</template>
+{% assign prefix = 'g' %}{% assign prefix_len = prefix | size %}
+<script>
+(() => {
+    const prefix = '{{ prefix }}';
+    const maxIndex = [{% for item in site.items %}{% assign head = item.slug | slice:0,prefix_len %}{% if head == prefix %}
+        '{{ item.slug }}',{% endif %}{% endfor %}
+    ].reduce((maxIndex, filename) => {
+        const itemIndex = parseInt(filename.substring(prefix.length), 10);
+        return Math.max(itemIndex, maxIndex);
+    }, 0);
+    const filename = `${prefix}${('0000' + (maxIndex + 1)).slice(-4)}.html`;
+    const content = document.getElementById('new').innerHTML;
+    document.getElementById('new-link').href += `?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(content)}`;
+})();
+</script>
 
 </body>
 </html>
