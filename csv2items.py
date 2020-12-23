@@ -27,7 +27,9 @@ dest_dir = '_items/'
 # Check source file
 print(f'- read {src_file_path}')
 if not os.path.isfile(src_file_path):
+    print('\n')
     print(f'ERROR: Source csv file not found: {src_file_path}')
+    print('\n')
     sys.exit(1)
 
 # Parse source file
