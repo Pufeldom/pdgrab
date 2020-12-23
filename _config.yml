@@ -4,6 +4,7 @@ exclude:
   - pdgrab
   - '*.py'
   - 'items-*.csv'
+  - 'PRODUCT_*.csv'
 
 collections:
   items:
