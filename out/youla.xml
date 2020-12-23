@@ -1,4 +1,5 @@
 ---
+permalink: /out/youla.xml
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <yml_catalog date="{{ site.time | date:'%Y-%m-%d %H:%M' }}">
