@@ -12,7 +12,7 @@ permalink: /out/youla.xml
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
                 <description><![CDATA[{{ item.content | strip }}]]></description>
-                <url>http://pufeldom.ru/katalog/item/{% include hru.html item=item %}/</url>
+                <url>{% include url.html item=item %}</url>
                 <youlaCategoryId>4</youlaCategoryId>
                 <youlaSubcategoryId>410</youlaSubcategoryId>
             </offer>
