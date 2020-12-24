@@ -28,7 +28,7 @@
     <tr>
         <td>{{ item.slug }}</td>
         <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
-        <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}"><img src="{{ item.image }}"></a></td>
+        <td><a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a></td>
     </tr>
 {% endfor %}
 </table>
