@@ -5,7 +5,7 @@ permalink: /out/youla.xml
 <yml_catalog date="{{ site.time | date:'%Y-%m-%d %H:%M' }}">
     <shop>
         <offers>
-{% for item in site.items %}{% if item.youla and item.active and if item.image %}
+{% for item in site.items %}{% if item.youla and item.active and item.image %}
             <offer id="{{ item.slug }}">
                 <title><![CDATA[{{ item.title }}]]></title>
                 <price>{{ item.price }}</price>
