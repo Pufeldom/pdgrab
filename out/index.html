@@ -37,7 +37,7 @@
 {% assign items = site.items | sort:"title" %}{% for item in items %}
     <tr>
         <td>{{ item.slug }}</td>
-        <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
+        <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
         <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a>
         </td>
