@@ -15,9 +15,6 @@ permalink: /out/youla.xml
                 <url>http://pufeldom.ru/katalog/item/{% include hru.html item=item %}/</url>
                 <youlaCategoryId>4</youlaCategoryId>
                 <youlaSubcategoryId>410</youlaSubcategoryId>
-                <managerName>Пуфельдом Pufeldom</managerName>
-                <phone>8 913 470-58-88</phone>
-                <address>Новосибирск</address>
             </offer>
 {% endif %}{% endfor %}
         </offers>
