@@ -43,6 +43,7 @@ with open(src_file_path, newline='') as csvfile:
             pmurl = None
             image = None
             gallery_str = None
+            youla_str = 'false'
             if os.path.isfile(dest_file_path):
                 print(f'- read {dest_file_path}')
                 with io.open(dest_file_path, 'r', encoding='utf8') as f:
@@ -54,6 +55,13 @@ with open(src_file_path, newline='') as csvfile:
                         )
                     except ValueError:
                         print(f'  WARNING: cannot get existing images data for {dest_file_path}')
+                    try:
+                        [(youla_str)] = re.findall(
+                            r'\nyoula:\s*([\S\s]*?)\n---',
+                            dest_file_content,
+                        )
+                    except ValueError:
+                        print(f'  WARNING: cannot get existing youla value for {dest_file_path}')
 
             # Build new destination content
             dest_file_content = f"""---
@@ -76,6 +84,7 @@ image: {image}
 gallery:{gallery_str or ' '}
 new: {'true' if (row['Новинка'] == 'да') else 'false'}
 active: {'true' if (row['Активен'] == 'да') else 'false'}
+youla: {youla_str}
 ---
 
 """
