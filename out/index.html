@@ -28,7 +28,7 @@
 <body>
 
 <ul>
-    <li><a href="https://github.com/thybzi/pdgrab/new/master/" id="new-link" target="_blank">NEW ITEM</a></li>
+    <li><a href="https://github.com/Pufeldom/pdgrab/new/master/" id="new-link" target="_blank">NEW ITEM</a></li>
     <li><a href="bitrix.csv" download="bitrix_{{ site.time | date:'%Y%m%d_%H%M' }}.csv">bitrix.csv</a></li>
     <li><a href="youla.xml">youla.xml</a></li>
 </ul>
@@ -37,7 +37,7 @@
 {% assign items = site.items | sort:"title" %}{% for item in items %}
     <tr>
         <td>{{ item.slug }}</td>
-        <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
+        <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
         <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a>
         </td>
