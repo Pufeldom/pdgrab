@@ -71,9 +71,9 @@ active: true
         const itemIndex = parseInt(filename.substring(prefix.length), 10);
         return Math.max(itemIndex, maxIndex);
     }, 0);
-    const filename = `${prefix}${('0000' + (maxIndex + 1)).slice(-4)}.html`;
+    const path = `_items/${prefix}${('0000' + (maxIndex + 1)).slice(-4)}.html`;
     const content = document.getElementById('new').innerHTML;
-    document.getElementById('new-link').href += `?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(content)}`;
+    document.getElementById('new-link').href += `?filename=${encodeURIComponent(path)}&value=${encodeURIComponent(content)}`;
 })();
 </script>
 
