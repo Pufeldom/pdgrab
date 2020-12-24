@@ -5,7 +5,7 @@ permalink: /out/youla.xml
 <yml_catalog date="{{ site.time | date:'%Y-%m-%d %H:%M' }}">
     <shop>
         <offers>
-{% for item in site.items %}{% if item.active %}{% if item.image %}
+{% for item in site.items %}{% if item.youla and item.active and if item.image %}
             <offer id="{{ item.slug }}">
                 <title><![CDATA[{{ item.title }}]]></title>
                 <price>{{ item.price }}</price>
@@ -19,7 +19,7 @@ permalink: /out/youla.xml
                 <phone>8 913 470-58-88</phone>
                 <address>Новосибирск</address>
             </offer>
-{% endif %}{% endif %}{% endfor %}
+{% endif %}{% endfor %}
         </offers>
     </shop>
 </yml_catalog>
