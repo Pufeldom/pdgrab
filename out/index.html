@@ -24,7 +24,7 @@
 </ul>
 
 <table>
-{% for item in site.items %}
+{% assign items = site.items | sort:"slug" | reverse %}{% for item in items %}
     <tr>
         <td>{{ item.slug }}</td>
         <td><a href="https://github.com/thybzi/pdgrab/edit/master/{{ item.path }}">{{ item.title }}</a></td>
