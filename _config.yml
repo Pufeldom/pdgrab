@@ -6,6 +6,8 @@ exclude:
   - 'items-*.csv'
   - 'PRODUCT_*.csv'
 
+timezone: Asia/Novosibirsk
+
 collections:
   items:
     output: false
