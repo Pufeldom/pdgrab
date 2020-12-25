@@ -1,7 +1,33 @@
 ---
 ---
 ID;Внешний код;Название;Символьный код;Цена;Валюта;Единица измерения;Ставка НДС;НДС включён в цену;Раздел (уровень 1);Раздел (уровень 2);Раздел (уровень 3);Сорт.;Активен;Описание;Формат описания;Картинка для анонса;Детальная картинка;Артикул;Цвет;Тест Мартиндейла;Плотность ткани, г/м2;Вес, кг;Ширина, см;Глубина, см;Высота, см;Материал обивки;Материал ножек;Новинка;Картинки товара;Фоновая картинка для шаблона;Уценка;Форма;Количество проголосовавших;Сумма оценок;Рейтинг
-{% for item in site.items %};{{ item.slug }};{% include text.html text=item.title %};{% include hru.html item=item %};{{ item.price }};RUB;Штука;Без НДС;нет;Мебель;{{ item.section }};;;{% include bool.html val=item.active %};{% include text.html text=item.content %};text;{% include preview.html item=item %};{{ item.image }};;{{ item.color }};{{ item.martindale }};{{ item.density }};{{ item.weight }};{{ item.width }};{{ item.depth }};{{ item.height }};{{ item.material }};{{ item.legs }};{% include bool.html val=item.new %};{% if item.gallery %}{{ item.image }}{% endif %};;;{{ item.shape }};;;{%
+{% for item in site.items %}{% capture devnull %}
+
+    {% assign material = nil %}
+    {% assign martindale = nil %}
+    {% assign density = nil %}
+
+    {% for m in site.materials %}
+        {% if item.title contains m.title %}
+            {% assign material = m.material %}
+            {% assign martindale = m.martindale %}
+            {% assign density = m.density %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    {% unless material %}
+        {% assign material = item.material %}
+    {% endunless %}
+    {% unless martindale %}
+        {% assign martindale = item.martindale %}
+    {% endunless %}
+    {% unless density %}
+        {% assign density = item.density %}
+    {% endunless %}
+
+{% endcapture %}{% assign devnull=nil
+%};{{ item.slug }};{% include text.html text=item.title %};{% include hru.html item=item %};{{ item.price }};RUB;Штука;Без НДС;нет;Мебель;{{ item.section }};;;{% include bool.html val=item.active %};{% include text.html text=item.content %};text;{% include preview.html item=item %};{{ item.image }};;{{ item.color }};{{ martindale }};{{ density }};{{ item.weight }};{{ item.width }};{{ item.depth }};{{ item.height }};{{ material }};{{ item.legs }};{% include bool.html val=item.new %};{% if item.gallery %}{{ item.image }}{% endif %};;;{{ item.shape }};;;{%
 if item.gallery %}{% for pic_url in item.gallery %}
 ;{{ item.slug }};;;;;;;;;;;;;;;;;;;;;;;;;;;;{{ pic_url }};;;;;;{% endfor %}{% endif %}
 {% endfor %}

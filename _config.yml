@@ -11,3 +11,5 @@ timezone: Asia/Novosibirsk
 collections:
   items:
     output: false
+  materials:
+    output: false
