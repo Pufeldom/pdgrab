@@ -1,0 +1,12 @@
+{% capture devnull %}
+    {% assign item = include.item %}
+    {% capture material %}{% include material.html item=item %}{% endcapture %}
+{% endcapture %}{% assign devnull=nil %}{%
+if item.width %}Ширина: {{ item.width }} см
+{% endif %}{% if item.depth %}Глубина: {{ item.depth }} см
+{% endif %}{% if item.height %}Высота: {{ item.height }} см
+{% endif %}{% if material %}Материал обивки: {{ material | downcase }}
+{% endif %}{% if item.legs %}Ножки: {{ item.legs | downcase }}
+{% endif %}
+Огромный выбор материалов.
+Возможно изготовление по Вашим параметрам.

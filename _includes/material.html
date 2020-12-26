@@ -1,0 +1,12 @@
+{% capture devnull %}
+    {% assign item = include.item %}
+    {% assign material = item.material %}
+    {% unless material %}
+        {% for m in site.materials %}
+            {% if item.title contains m.title %}
+                {% assign material = m.material %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+    {% endunless %}
+{% endcapture %}{% assign devnull=nil %}{{ material }}

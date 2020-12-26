@@ -11,7 +11,7 @@ permalink: /out/youla.xml
                 <price>{{ item.price }}</price>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
-                <description><![CDATA[{{ item.content | strip }}]]></description>
+                <description><![CDATA[{% include description.html item=item %}]]></description>
                 <url>{% include url.html item=item %}</url>
                 <youlaCategoryId>4</youlaCategoryId>
                 <youlaSubcategoryId>410</youlaSubcategoryId>
