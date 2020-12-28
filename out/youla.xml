@@ -7,11 +7,11 @@ permalink: /out/youla.xml
         <offers>
 {% for item in site.items %}{% if item.youla and item.active and item.image %}
             <offer id="{{ item.slug }}">
-                <title><![CDATA[{{ item.title }}]]></title>
+                <title>{% include xmltext.html text=item.title %}</title>
                 <price>{{ item.price }}</price>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
-                <description><![CDATA[{% include description.html item=item %}]]></description>
+                <description>{% capture description %}{% include description.html item=item %}{% endcapture %}{% include cdata.html text=description %}</description>
                 <url>{% include url.html item=item %}</url>
                 <youlaCategoryId>4</youlaCategoryId>
                 <youlaSubcategoryId>410</youlaSubcategoryId>
