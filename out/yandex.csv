@@ -1,0 +1,6 @@
+---
+---
+Категория;Название;Описание;Цена;Фото;Популярный товар;В наличии
+{% for item in site.items %}{% capture description %}{% include description.html item=item %}{% endcapture
+%}{{ item.section }};{% include text.html text=item.title %};{% include text.html text=description %};{{ item.price }};{{ item.image }};{% include bool_ucfirst.html val=false %};{% include bool_ucfirst.html val=item.active %}
+{% endfor %}
