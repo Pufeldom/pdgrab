@@ -71,14 +71,14 @@ price: {int(float(row['Цена']))}
 section: {row['Раздел (уровень 2)']}
 color: {row['Цвет']}
 shape: {row['Форма']}
-width: {row['Ширина, мм']}
-depth: {row['Глубина, мм']}
-height: {row['Высота, мм']}
+width: {row['Ширина, cм']}
+depth: {row['Глубина, cм']}
+height: {row['Высота, cм']}
 material: {row['Материал обивки']}
 legs: {row['Материал ножек']}
 martindale: {row['Тест Мартиндейла']}
 density: {row['Плотность ткани, г/м2']}
-weight: {row['Вес']}
+weight: {row['Вес, кг']}
 pmurl: {pmurl}
 image: {image}
 gallery:{gallery_str or ' '}
