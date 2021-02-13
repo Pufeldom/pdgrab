@@ -1,5 +1,6 @@
 from importlib import import_module
 from pdgrab import config
+from pdgrab.config import PdgrabConfigNoParamException
 
 
 def get_items():
@@ -14,5 +15,12 @@ def get_items():
         source_base_url = config.get_param(source_name, 'base_url')
         source_section_prefix = config.get_param(source_name, 'section_prefix')
         source_sections = config.get_param(source_name, 'sections', True)
-        items = items + source_module.get_items(source_base_url, source_section_prefix, source_sections)
+        try:
+            source_skipped_section_titles = config.get_param(source_name, 'skipped_section_titles', True)
+        except PdgrabConfigNoParamException:
+            source_skipped_section_titles = []
+        items = items + source_module.get_items(
+            source_base_url, source_section_prefix, source_sections,
+            source_skipped_section_titles,
+        )
     return items

@@ -5,12 +5,13 @@ from pdgrab import selector, fetch
 from pdgrab.item import PdgrabRawItem, PdgrabItem
 
 
-def get_items(base_url, section_prefix, sections):
+def get_items(base_url, section_prefix, sections, skipped_section_titles):
     """Collect items from Torgsib source
     Args:
         base_url (str) Base URI used for sections and pictures (e.g. 'https://torg-sib.ru')
         section_prefix (str) Additional URI prefix added to every section URL (e.g. '/catalog/tkani/')
         sections (list of str) List of URIs for each section (e.g. ['velyur', 'rogozhka', 'flok'])
+        skipped_section_titles (list of str) List of titles for sections to be skipped (e.g. ['Ducati', 'Atlas'])
     Returns:
         list of PdgrabItem
     """
@@ -28,9 +29,7 @@ def get_items(base_url, section_prefix, sections):
                     continue
 
                 # Skip undesired sections
-                if item.section == 'Ducati':
-                    continue
-                if item.section == 'Atlas':
+                if item.section in skipped_section_titles:
                     continue
 
                 # Drop unneeded title suffix
