@@ -27,7 +27,7 @@ ID;Внешний код;Название;Символьный код;Цена;�
     {% endunless %}
 
 {% endcapture %}{% assign devnull=nil
-%};{{ item.slug }};{% include text.html text=item.title %};{% include hru.html item=item %};{{ item.price }};RUB;Штука;Без НДС;нет;Мебель;{{ item.section }};;;{% include bool.html val=item.active %};{% include text.html text=item.content %};text;{% include preview.html item=item %};{{ item.image }};;{{ item.color }};{{ martindale }};{{ density }};{{ item.weight }};{{ item.width }};{{ item.depth }};{{ item.height }};{{ material }};{{ item.legs }};{% include bool.html val=item.new %};{% if item.gallery %}{{ item.image }}{% endif %};;;{{ item.shape }};;;{%
+%};{{ item.slug }};{% include text.html text=item.title %};{% include hru.html item=item %};{{ item.price }};RUB;Штука;Без НДС;нет;;;;;{% include bool.html val=item.active %};{% include text.html text=item.content %};text;{% include preview.html item=item %};{{ item.image }};;{{ item.color }};{{ martindale }};{{ density }};{{ item.weight }};{{ item.width }};{{ item.depth }};{{ item.height }};{{ material }};{{ item.legs }};{% include bool.html val=item.new %};{% if item.gallery %}{{ item.image }}{% endif %};;;{{ item.shape }};;;{%
 if item.gallery %}{% for pic_url in item.gallery %}
 ;{{ item.slug }};;;;;;;;;;;;;;;;;;;;;;;;;;;;{{ pic_url }};;;;;;{% endfor %}{% endif %}
 {% endfor %}
