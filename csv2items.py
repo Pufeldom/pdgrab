@@ -16,14 +16,8 @@ except IndexError:
     sys.exit(1)
 
 # Configure other params
-src_sections = [
-    'Пуфы круглые на металлических ножках',
-    'Пуфы прямоугольные',
-    'Пуфы круглые на деревянных ножках',
-    'Пуфы круглые',
-    'Банкетки',
-    'Прочее',
-    'Распродажа',
+root_src_sections = [
+    'Мебель',
 ]
 dest_dir = '_items/'
 
@@ -39,7 +33,7 @@ if not os.path.isfile(src_file_path):
 with open(src_file_path, newline='') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     for row in reader:
-        if row['Раздел (уровень 2)'] in src_sections:
+        if row['Раздел (уровень 1)'] in root_src_sections:
             dest_file_path = dest_dir + row['Внешний код'] + '.html'
 
             # Detect existing images data
