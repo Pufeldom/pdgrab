@@ -18,6 +18,7 @@ except IndexError:
 # Configure other params
 root_src_sections = [
     'Мебель',
+    'Распродажа',
 ]
 dest_dir = '_items/'
 
