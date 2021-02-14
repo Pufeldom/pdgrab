@@ -48,7 +48,7 @@ with open(src_file_path, newline='') as csvfile:
                     dest_file_content = f.read()
                     try:
                         [(pmurl, image, gallery_str)] = re.findall(
-                            r'\npmurl:\s*([\S\s]*?)\nimage:\s*([\S\s]*?)\ngallery:([\S\s]*?)\nnew:',
+                            r'\npmurl:\s*([\S\s]*?)\nimage:\s*([\S\s]*?)\ngallery:([\S\s]*?)\nactive:',
                             dest_file_content,
                         )
                     except ValueError:
@@ -80,7 +80,6 @@ weight: {row['Вес, кг']}
 pmurl: {pmurl}
 image: {image}
 gallery:{gallery_str or ' '}
-new: {'true' if (row['Новинка'] == 'да') else 'false'}
 active: {'true' if (row['Активен'] == 'да') else 'false'}
 youla: {youla_str}
 ---
