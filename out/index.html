@@ -35,7 +35,7 @@
 </ul>
 
 <table>
-{% assign items = site.items | sort:"title" %}{% for item in items %}
+{% assign items = site.items | sort:"title" %}{% for item in items %}{% if item.active %}
     <tr>
         <td>{{ item.slug }}</td>
         <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
@@ -44,7 +44,7 @@
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a>
         </td>
     </tr>
-{% endfor %}
+{% endif %}{% endfor %}
 </table>
 
 <template id="new">---
