@@ -7,7 +7,7 @@ permalink: /out/youla.xml
         <offers>
 {% for item in site.items %}{% if item.youla and item.active and item.image %}
             <offer id="{{ item.slug }}">
-                <title>{% include xmltext.html text=item.title %}</title>
+                <name>{% include xmltext.html text=item.title %}</name>
                 <price>{{ item.price }}</price>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
