@@ -15,6 +15,9 @@ permalink: /out/youla.xml
                 <url>{% include url.html item=item %}</url>
                 <youlaCategoryId>4</youlaCategoryId>
                 <youlaSubcategoryId>410</youlaSubcategoryId>
+                <managerName>Дмитрий</managerName>
+                <phone>8 913 470-58-88</phone>
+                <address>Новосибирск, ул. Станционная, д. 78</address>
             </offer>
 {% endif %}{% endfor %}
         </offers>
