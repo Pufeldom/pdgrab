@@ -19,9 +19,9 @@ def get_items(base_url, section_prefix, sections, skipped_section_titles):
     for section_uri in sections:
         url = base_url + section_prefix + section_uri + '/'
         result = TorgsibPageResult(url, base_url)
-        section = result.title.strip()
 
         if result.items:
+            section = result.title.strip()
             for item in result.items:
 
                 # Skip items with no pic
@@ -93,17 +93,21 @@ def _find_uppercase_head(title):
 
 class TorgsibPageResult:
     def __init__(self, url, base_url):
-        content = fetch(url)
-        parser = TorgsibPageParser()
-        parser.feed(content)
-        self.title = parser.title
-        self.items = parser.items
+        content = fetch(url, tolerate404=True)
+        if content is None:
+            self.title = None
+            self.items = []
+        else:
+            parser = TorgsibPageParser()
+            parser.feed(content)
+            self.title = parser.title
+            self.items = parser.items
 
-        if parser.links:
-            for link in parser.links:
-                link_url = base_url + link
-                result = TorgsibPageResult(link_url, base_url)
-                self.items = self.items + result.items
+            if parser.links:
+                for link in parser.links:
+                    link_url = base_url + link
+                    result = TorgsibPageResult(link_url, base_url)
+                    self.items = self.items + result.items
 
 
 class TorgsibPageParser(HTMLParser, ABC):

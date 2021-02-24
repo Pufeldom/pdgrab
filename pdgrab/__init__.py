@@ -1,10 +1,18 @@
 import re
 import urllib.request
+import urllib.error
 
 
-def fetch(url, encoding='utf-8'):
+def fetch(url, encoding='utf-8', tolerate404=False):
     print('- fetch ' + url)
-    response = urllib.request.urlopen(url)
+    try:
+        response = urllib.request.urlopen(url)
+    except urllib.error.HTTPError:
+        if tolerate404:
+            print('ERROR! url %s not found (404)' % url)
+            return None
+        else:
+            raise
     return response.read().decode(encoding)
 
 
