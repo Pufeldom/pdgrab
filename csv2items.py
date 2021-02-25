@@ -69,9 +69,9 @@ price: {int(float(row['Цена']))}
 section: {row['Раздел (уровень 2)']}
 color: {row['Цвет']}
 shape: {row['Форма']}
-width: {row['Ширина, cм']}
-depth: {row['Глубина, cм']}
-height: {row['Высота, cм']}
+width: {row['Ширина, см']}
+depth: {row['Глубина, см']}
+height: {row['Высота, см']}
 material: {row['Материал обивки']}
 legs: {row['Материал ножек']}
 martindale: {row['Тест Мартиндейла']}
