@@ -34,7 +34,7 @@ if not os.path.isfile(src_file_path):
 with open(src_file_path, newline='') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     for row in reader:
-        if row['Раздел (уровень 1)'] in root_src_sections:
+        if row['Раздел (уровень 2)'] in root_src_sections:
             dest_file_path = dest_dir + row['Внешний код'] + '.html'
 
             # Detect existing images data
@@ -66,7 +66,7 @@ with open(src_file_path, newline='') as csvfile:
 hru: {row['Символьный код']}
 title: {row['Название']}
 price: {int(float(row['Цена']))}
-section: {row['Раздел (уровень 2)']}
+section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
 shape: {row['Форма']}
 width: {row['Ширина, см']}
