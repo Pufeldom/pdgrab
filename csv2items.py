@@ -68,7 +68,6 @@ title: {row['Название']}
 price: {int(float(row['Цена']))}
 section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
-shape: {row['Форма']}
 width: {row['Ширина, см']}
 depth: {row['Глубина, см']}
 height: {row['Высота, см']}
