@@ -1,0 +1,37 @@
+---
+---
+handleId,fieldType,name,description,productImageUrl,collection,sku,ribbon,price,surcharge,visible,discountMode,discountValue,inventory,weight,productOptionName1,productOptionType1,productOptionDescription1,productOptionName2,productOptionType2,productOptionDescription2,productOptionName3,productOptionType3,productOptionDescription3,productOptionName4,productOptionType4,productOptionDescription4,productOptionName5,productOptionType5,productOptionDescription5,productOptionName6,productOptionType6,productOptionDescription6,additionalInfoTitle1,additionalInfoDescription1,additionalInfoTitle2,additionalInfoDescription2,additionalInfoTitle3,additionalInfoDescription3,additionalInfoTitle4,additionalInfoDescription4,additionalInfoTitle5,additionalInfoDescription5,additionalInfoTitle6,additionalInfoDescription6,customTextField1,customTextCharLimit1,customTextMandatory1,customTextField2,customTextCharLimit2,customTextMandatory2
+{% for item in site.items %}{% capture devnull %}
+
+    {% assign material = nil %}
+    {% assign martindale = nil %}
+    {% assign density = nil %}
+
+    {% for m in site.materials %}
+        {% if item.title contains m.title %}
+            {% assign material = m.material %}
+            {% assign martindale = m.martindale %}
+            {% assign density = m.density %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    {% unless material %}
+        {% assign material = item.material %}
+    {% endunless %}
+    {% unless martindale %}
+        {% assign martindale = item.martindale %}
+    {% endunless %}
+    {% unless density %}
+        {% assign density = item.density %}
+    {% endunless %}
+
+    {% if item.gallery %}
+        {% capture images %}{{ item.image }};{{ item.gallery | join: ";" }}{% endcapture %}
+    {% else %}
+        {% assign images = item.image %}
+    {% endif %}
+
+{% endcapture %}{% assign devnull=nil
+%}{{ item.slug }},Product,{% include text.html text=item.title %},{% include text.html text=item.content %},{{ images }},{{ item.section }},,,{{ item.price }},,{% include bool_en.html val=item.active %},PERCENT,0,42,{{ item.weight }},Цвет,DROP_DOWN,{{ item.color }},"Габариты, см (ширина х глубина х высота)",DROP_DOWN,{{ item.width }}x{{ item.depth }}x{{ item.height }},"Толщина поролона, см",DROP_DOWN,,Ножки,DROP_DOWN,{{ item.legs }},Цвет ножек,DROP_DOWN,,Материал обивки,DROP_DOWN,{{ item.material }},,,,,,,,,,,,,Изменить материал обивки,500,FALSE,Изменить ножки,500,FALSE
+{% endfor %}
