@@ -1,0 +1,18 @@
+{% capture devnull %}
+    {% assign group_title = nil %}
+    {% assign group_code = nil %}
+    {% assign color = include.color | capitalize %}
+
+    {% for group in site.data.colorgroups %}
+        {% if group[1].variants contains color %}
+            {% assign group_title = group[0] %}
+            {% assign group_code = group[1].code %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    {% unless group_title %}
+        {% assign group_title = "Другой" %}
+        {% assign group_code = "FFFFFF" %}
+    {% endunless %}
+{% endcapture %}{% assign devnull=nil %}#{{ group_code }}:{{ group_title }}
