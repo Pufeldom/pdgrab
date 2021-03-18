@@ -47,6 +47,13 @@ with open(src_file_path, newline='') as csvfile:
                 with io.open(dest_file_path, 'r', encoding='utf8') as f:
                     dest_file_content = f.read()
                     try:
+                        [(legs_color, foam)] = re.findall(
+                            r'\nlegs_color:\s*([\S\s]*?)\nfoam:\s*([\S\s]*?)\nmartindale:',
+                            dest_file_content,
+                        )
+                    except ValueError:
+                        print(f'  WARNING: cannot get existing legs_color/foam data for {dest_file_path}')
+                    try:
                         [(pmurl, image, gallery_str)] = re.findall(
                             r'\npmurl:\s*([\S\s]*?)\nimage:\s*([\S\s]*?)\ngallery:([\S\s]*?)\nactive:',
                             dest_file_content,
@@ -73,6 +80,8 @@ depth: {row['Глубина, см']}
 height: {row['Высота, см']}
 material: {row['Материал обивки']}
 legs: {row['Материал ножек']}
+legs_color: {legs_color}
+foam: {foam}
 martindale: {row['Тест Мартиндейла']}
 density: {row['Плотность ткани, г/м2']}
 weight: {row['Вес, кг']}
