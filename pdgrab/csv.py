@@ -20,7 +20,8 @@ def write_files(file_path_prefix, items):
         print('- write ' + target_file_path)
         with open(target_file_path, 'w', newline='') as csvfile:
             writer = csv.DictWriter(
-                csvfile, fieldnames=target_cols.keys(), dialect=csv.unix_dialect, delimiter=target_delimiter
+                csvfile, fieldnames=target_cols.keys(), dialect=csv.unix_dialect, delimiter=target_delimiter,
+                quoting=csv.QUOTE_MINIMAL,
             )
             writer.writeheader()
             for item in items:
