@@ -1,6 +1,6 @@
 from datetime import datetime
 from pdgrab import grab, csv
 
-filename = 'items-%s.csv' % datetime.now().strftime('%Y%m%d%H%M')
+filename_prefix = 'items-%s' % datetime.now().strftime('%Y%m%d%H%M')
 items = grab.get_items()
-csv.write_file(filename, items)
+csv.write_files(filename_prefix, items)
