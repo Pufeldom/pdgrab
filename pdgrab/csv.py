@@ -1,6 +1,6 @@
 import csv
 from importlib import import_module
-from pdgrab import config
+from pdgrab import config, csvextras
 
 
 def write_files(file_path_prefix, items):
@@ -9,6 +9,8 @@ def write_files(file_path_prefix, items):
         file_path_prefix (str) Prefix of destination file path ('_<TARGET_NAME>.csv' will be appended to that value)
         items (list of PdgrabItem) List of catalog items to output
     """
+
+    extras = csvextras.get_extras()
     targets = config.get_param('csv', 'targets', True)
     for target_name in targets:
         target_module = import_module(__name__ + '_' + target_name)  # provide 'pdgrab.csv_<TARGET_NAME>'
@@ -22,5 +24,8 @@ def write_files(file_path_prefix, items):
             )
             writer.writeheader()
             for item in items:
+                extras_key = item.subsection.lower() if item.section else None
+                if extras_key in extras:
+                    item.extras = extras[extras_key]
                 values = {k: target_module.get_value(v, item) for k, v in target_cols.items()}
                 writer.writerow(values)
