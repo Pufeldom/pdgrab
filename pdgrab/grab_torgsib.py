@@ -82,6 +82,7 @@ def _find_uppercase_head(title):
     title_head = min((
         title.split()[0],
         title.split('/')[0],
+        title.split('-')[0],
     ), key=len)
     if len(title_head) < 3:
         return None
