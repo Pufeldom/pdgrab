@@ -1,4 +1,7 @@
 from pdgrab import slugify
+from pdgrab.item_extras import PdgrabItemExtrasProvider
+
+extras_provider = PdgrabItemExtrasProvider()
 
 
 class PdgrabItem:
@@ -11,13 +14,7 @@ class PdgrabItem:
         self.large_pic = large_pic or small_pic
         self.is_available = is_available
         self.dest_id = dest_id
-        self.extras = PdgrabItemExtras()
-
-
-class PdgrabItemExtras:
-    def __init__(self, martindale=None, density=None):
-        self.martindale = int(martindale) if martindale else None
-        self.density = int(density) if density else None
+        self.extras = extras_provider.get_extras(title=self.title, material=self.subsection)
 
 
 class PdgrabRawItem:

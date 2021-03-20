@@ -18,4 +18,5 @@ def get_value(value_raw, item):
     value = value.replace('@large_pic', item.large_pic or '')
     value = value.replace('@martindale', str(item.extras.martindale) if item.extras.martindale else '')
     value = value.replace('@density', str(item.extras.density) if item.extras.density else '')
+    value = value.replace('@color', str(item.extras.color) if item.extras.color else '')
     return value

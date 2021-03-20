@@ -1,16 +1,20 @@
 import os
-from pdgrab.item import PdgrabItemExtras
+from collections import namedtuple
+from pdgrab import config
 
 MATERIALS_DIR = '_materials'
 MATERIALS_FILE_EXT = '.html'
+COLORS = config.get_section('color')
+
+MaterialData = namedtuple('MaterialData', ('martindale', 'density'))
 
 
-def get_extras():
-    """Read items extras from jekyll files, providing collected result
+def _read_materials():
+    """Read materials data from jekyll files, providing collected result
     Returns:
-        dict of PdgrabItemExtras
+        dict of MaterialData
     """
-    extras = {}
+    materials = {}
 
     # Process files in materials dir
     for entry in os.listdir(MATERIALS_DIR):
@@ -26,13 +30,13 @@ def get_extras():
         fh = open(file_path)
         file_data = _read_jekyll_data(fh)
 
-        # Create extras item
-        extras[file_basename.lower()] = PdgrabItemExtras(
+        # Create materials item
+        materials[file_basename.lower()] = MaterialData(
             martindale=file_data.get('martindale'),
             density=file_data.get('density'),
         )
 
-    return extras
+    return materials
 
 
 def _read_jekyll_data(fh):
@@ -100,3 +104,53 @@ def _process_yaml_value(value_raw):
             return int(value_raw)
         except ValueError:
             return value_raw
+
+
+class PdgrabItemExtras:
+    def __init__(self, material_data, color=None):
+        if color:
+            try:
+                self.color_code = '#' + COLORS[color]
+                self.color = color
+            except KeyError:
+                raise PdgrabItemExtrasUnknownColorException(f'Unknown color {color}')
+        else:
+            self.color_code = '#FFFFFF'
+            self.color = 'Другой'
+
+        self.martindale = material_data.martindale
+        self.density = material_data.density
+
+
+class PdgrabItemExtrasProvider:
+    def __init__(self):
+        self._color_marks = config.get_section('color_marks')
+        self._materials = _read_materials()
+        self._empty_material = MaterialData(martindale=None, density=None)
+
+    def get_extras(self, title, material=None):
+        material_key = material.lower() if material else None
+        material_data = self._materials.get(material_key) or self._empty_material
+
+        matched_mark = None
+        detected_color = None
+        for mark, color in self._color_marks.items():
+            if mark in title:
+                matched_mark = mark
+                detected_color = color
+                break
+        if detected_color is None:
+            print(f'WARNING! cannot detect color for item title: {title}')
+
+        try:
+            return PdgrabItemExtras(material_data=material_data, color=detected_color)
+        except PdgrabItemExtrasUnknownColorException:
+            print(
+                f'WARNING! unknown color "{detected_color}" defined for mark "{matched_mark}"',
+                f'(matched for item title: "{title}")',
+            )
+            return PdgrabItemExtras(material_data=material_data)
+
+
+class PdgrabItemExtrasUnknownColorException(Exception):
+    """Color name not found in 'colors' section of config"""
