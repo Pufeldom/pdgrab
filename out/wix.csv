@@ -53,7 +53,7 @@
     visible=                    is_active
     discountMode=               'PERCENT'
     discountValue=              0
-    inventory=                  3
+    inventory=                  'InStock'
     weight=                     item.weight
     productOptionName1=         'Цвет'
     productOptionType1=         'COLOR'
