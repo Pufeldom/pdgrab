@@ -1,0 +1,26 @@
+{% capture devnull %}
+
+    {% assign csv_data = site.data.csv[include.type] %}
+    {% assign delimiter = csv_data.delimiter %}
+
+{% endcapture %}{% assign devnull=nil %}{% for col_data in csv_data.cols %}{% capture devnull %}
+
+    {% assign col_title = col_data[0] %}
+    {% assign col_key = col_data[1] %}
+
+    {% assign value = nil %}
+    {% if include[col_title] %}
+        {% assign value = include[col_title] %}
+    {% elsif include[col_key] %}
+        {% assign value = include[col_key] %}
+    {% endif %}
+
+    {% if value contains delimiter %}
+        {% assign first_char = value | slice:0 %}
+        {% assign last_char = value | slice:-1 %}
+        {% if first_char != '"' or last_char != '"' %}
+            {% capture value %}{% include text.html text=value %}{% endcapture %}
+        {% endif %}
+    {% endif %}
+
+{% endcapture %}{% assign devnull=nil %}{{ value }}{% unless forloop.last %}{{ delimiter }}{% endunless %}{% endfor %}

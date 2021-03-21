@@ -1,9 +1,9 @@
 ---
 ---
-handleId,fieldType,name,description,productImageUrl,collection,sku,ribbon,price,surcharge,visible,discountMode,discountValue,inventory,weight,productOptionName1,productOptionType1,productOptionDescription1,productOptionName2,productOptionType2,productOptionDescription2,productOptionName3,productOptionType3,productOptionDescription3,productOptionName4,productOptionType4,productOptionDescription4,productOptionName5,productOptionType5,productOptionDescription5,productOptionName6,productOptionType6,productOptionDescription6,additionalInfoTitle1,additionalInfoDescription1,additionalInfoTitle2,additionalInfoDescription2,additionalInfoTitle3,additionalInfoDescription3,additionalInfoTitle4,additionalInfoDescription4,additionalInfoTitle5,additionalInfoDescription5,additionalInfoTitle6,additionalInfoDescription6,customTextField1,customTextCharLimit1,customTextMandatory1,customTextField2,customTextCharLimit2,customTextMandatory2
-{% for item in site.items %}{% capture devnull %}
+{% include csv_header.html type="wix" %}{% for item in site.items %}{% capture devnull %}
 
     {% capture description %}{% include description_wix.html item=item %}{% endcapture %}
+    {% capture description %}{% include text.html text=description %}{% endcapture %}
 
     {% assign material = nil %}
     {% assign martindale = nil %}
@@ -34,6 +34,49 @@ handleId,fieldType,name,description,productImageUrl,collection,sku,ribbon,price,
         {% assign images = item.image %}
     {% endif %}
 
-{% endcapture %}{% assign devnull=nil
-%}{{ item.slug }},Product,{% include text.html text=item.title %},{% include text.html text=description %},{{ images }},{{ item.section }},,,{{ item.price }},,{% include bool_en.html val=item.active %},PERCENT,0,3,{{ item.weight }},Цвет,COLOR,{% include colorgroup.html color=item.color %},Материал обивки,DROP_DOWN,{{ material | capitalize }},Тест Мартиндейла,DROP_DOWN,{{ martindale }},"Плотность ткани, г/м²",DROP_DOWN,{{ density }},"Ширина, см",DROP_DOWN,{{ item.width }},Материал ножек,DROP_DOWN,{{ item.legs | capitalize }},,,,,,,,,,,,,Изменить материал обивки,500,FALSE,Изменить ножки,500,FALSE
-{% endfor %}
+    {% capture title %}{% include text.html text=item.title %}{% endcapture %}
+    {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
+    {% capture colorgroup %}{% include colorgroup.html color=item.color %}{% endcapture %}
+    {% capture material %}{{ material | capitalize }}{% endcapture %}
+    {% capture legs %}{{ item.legs | capitalize }}{% endcapture %}
+
+{% endcapture %}{% assign devnull=nil %}
+{% include csv_row.html type='wix'
+    handleId=                   item.slug
+    title=                      title
+    fieldType=                  'Product'
+    name=                       title
+    description=                description
+    productImageUrl=            images
+    collection=                 item.section
+    price=                      item.price
+    visible=                    is_active
+    discountMode=               'PERCENT'
+    discountValue=              0
+    inventory=                  3
+    weight=                     item.weight
+    productOptionName1=         'Цвет'
+    productOptionType1=         'COLOR'
+    productOptionDescription1=  colorgroup
+    productOptionName2=         'Материал обивки'
+    productOptionType2=         'DROP_DOWN'
+    productOptionDescription2=  material
+    productOptionName3=         'Тест Мартиндейла'
+    productOptionType3=         'DROP_DOWN'
+    productOptionDescription3=  martindale
+    productOptionName4=         'Плотность ткани, г/м²'
+    productOptionType4=         'DROP_DOWN'
+    productOptionDescription4=  density
+    productOptionName5=         'Ширина, см'
+    productOptionType5=         'DROP_DOWN'
+    productOptionDescription5=  item.width
+    productOptionName6=         'Материал ножек'
+    productOptionType6=         'DROP_DOWN'
+    productOptionDescription6=  legs
+    customTextField1=           'Изменить материал обивки'
+    customTextCharLimit1=       500
+    customTextMandatory1=       'FALSE'
+    customTextField2=           'Изменить ножки'
+    customTextCharLimit2=       500
+    customTextMandatory2=       'FALSE'
+%}{% endfor %}

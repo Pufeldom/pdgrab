@@ -1,6 +1,21 @@
 ---
 ---
-Категория;Название;Описание;Цена;Фото;Популярный товар;В наличии
-{% for item in site.items %}{% capture description %}{% include description.html item=item %}{% endcapture
-%}Пуфы, банкетки, диваны;{% include text.html text=item.title %};{% include text.html text=description %};{{ item.price }};{{ item.image }};{% include bool_ucfirst.html val=false %};{% include bool_ucfirst.html val=item.active %}
-{% endfor %}
+{% include csv_header.html type='yandex' %}{% for item in site.items %}{% capture devnull %}
+
+    {% capture title %}{% include text.html text=item.title %}{% endcapture %}
+    {% capture is_active %}{% include bool_ucfirst.html val=item.active %}{% endcapture %}
+    {% capture is_popular %}{% include bool_ucfirst.html val=false %}{% endcapture %}
+
+    {% capture description %}{% include description.html item=item %}{% endcapture %}
+    {% capture description %}{% include text.html text=description %}{% endcapture %}
+
+{% endcapture %}{% assign devnull=nil %}
+{% include csv_row.html type='yandex'
+    section=        'Пуфы, банкетки, диваны'
+    title=          title
+    description=    description
+    price=          item.price
+    large_pic=      item.image
+    is_popular=     is_popular
+    is_available=   is_active
+%}{% endfor %}

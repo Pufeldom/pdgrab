@@ -1,0 +1,103 @@
+wix:
+  delimiter: ','
+  cols:
+    handleId:
+    fieldType:
+    name:
+    description:
+    productImageUrl:
+    collection:
+    sku:
+    ribbon:
+    price:
+    surcharge:
+    visible:
+    discountMode:
+    discountValue:
+    inventory:
+    weight:
+    productOptionName1:
+    productOptionType1:
+    productOptionDescription1:
+    productOptionName2:
+    productOptionType2:
+    productOptionDescription2:
+    productOptionName3:
+    productOptionType3:
+    productOptionDescription3:
+    productOptionName4:
+    productOptionType4:
+    productOptionDescription4:
+    productOptionName5:
+    productOptionType5:
+    productOptionDescription5:
+    productOptionName6:
+    productOptionType6:
+    productOptionDescription6:
+    additionalInfoTitle1:
+    additionalInfoDescription1:
+    additionalInfoTitle2:
+    additionalInfoDescription2:
+    additionalInfoTitle3:
+    additionalInfoDescription3:
+    additionalInfoTitle4:
+    additionalInfoDescription4:
+    additionalInfoTitle5:
+    additionalInfoDescription5:
+    additionalInfoTitle6:
+    additionalInfoDescription6:
+    customTextField1:
+    customTextCharLimit1:
+    customTextMandatory1:
+    customTextField2:
+    customTextCharLimit2:
+    customTextMandatory2:
+
+bitrix:
+  delimiter: ';'
+  cols:
+    ID:
+    Внешний код: ext_id
+    Название: title
+    Символьный код: hru
+    Цена: price
+    Валюта: currency
+    Единица измерения: unit
+    Ставка НДС: vat
+    НДС включён в цену: vat_included
+    Раздел (уровень 1):
+    Раздел (уровень 2):
+    Раздел (уровень 3):
+    Раздел (уровень 4):
+    Сорт.:
+    Активен: is_active
+    Описание: description
+    Формат описания: descr_format
+    Картинка для анонса: small_pic
+    Детальная картинка: large_pic
+    Артикул:
+    Цвет: color
+    Тест Мартиндейла: martindale
+    Плотность ткани, г/м2: density
+    Вес, кг: weight
+    Ширина, см: width
+    Глубина, см: depth
+    Высота, см: height
+    Материал обивки: material
+    Материал ножек: legs
+    Картинки галереи: gallery
+    Фоновая картинка для шаблона:
+    Количество проголосовавших:
+    Сумма оценок:
+    Рейтинг:
+
+yandex:
+  delimiter: ';'
+  cols:
+    Категория: section
+    Название: title
+    Описание: description
+    Цена: price
+    Фото: large_pic
+    Популярный товар: is_popular
+    В наличии: is_available

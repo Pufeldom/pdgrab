@@ -1,0 +1,13 @@
+{% capture devnull %}
+
+    {% assign csv_data = site.data.csv[include.type] %}
+    {% assign delimiter = csv_data.delimiter %}
+
+{% endcapture %}{% assign devnull=nil %}{% for col_data in csv_data.cols %}{% capture devnull %}
+
+    {% assign col_title = col_data[0] %}
+    {% if col_title contains delimiter %}
+        {% capture col_title %}{% include text.html text=col_title %}{% endcapture %}
+    {% endif %}
+
+{% endcapture %}{% assign devnull=nil %}{{ col_title }}{% unless forloop.last %}{{ delimiter }}{% endunless %}{% endfor %}
