@@ -1,0 +1,25 @@
+{% capture devnull %}
+
+    {% assign color_name = include.color %}
+    {% assign color_value = site.data.wix.colors[color_name] %}
+    {% unless color_value %}
+        {% assign color_name = include.color | capitalize %}
+        {% assign color_value = site.data.wix.colors[color_name] %}
+    {% endunless %}
+
+    {% if color_value %}
+        {% assign first_char = color_value | slice:0 %}
+        {% if first_char == '#' %}
+            {% capture color_result %}{{ color_value }}:{{ color_name }}{% endcapture %}
+        {% else %}
+            {% capture color_result %}{% include color_wix.html color=color_value %}{% endcapture %}
+        {% endif %}
+    {% else %}
+        {% for color_item in site.data.wix.colors %}
+            {% unless forloop.last %}{% continue %}{% endunless %}
+            {% assign default_color_name = color_item[0] %}
+        {% endfor %}
+        {% capture color_result %}{% include color_wix.html color=default_color_name %}{% endcapture %}
+    {% endif %}
+
+{% endcapture %}{% assign devnull=nil %}{{ color_result }}

@@ -36,9 +36,68 @@
 
     {% capture title %}{% include text.html text=item.title %}{% endcapture %}
     {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
-    {% capture colorgroup %}{% include colorgroup.html color=item.color %}{% endcapture %}
-    {% capture material %}{{ material | capitalize }}{% endcapture %}
-    {% capture legs %}{{ item.legs | capitalize }}{% endcapture %}
+
+    {% assign wix = site.data.wix %}
+    {% if wix.collections[item.section] %}
+        {% assign collection_data = wix.collections[item.section] %}
+    {% else %}
+        {% assign collection_data = wix.collections['_'] %}
+    {% endif %}
+
+    {% assign param1_name = nil %}{% assign param1_type = nil %}{% assign param1_value = nil %}
+    {% assign param2_name = nil %}{% assign param2_type = nil %}{% assign param2_value = nil %}
+    {% assign param3_name = nil %}{% assign param3_type = nil %}{% assign param3_value = nil %}
+    {% assign param4_name = nil %}{% assign param4_type = nil %}{% assign param4_value = nil %}
+    {% assign param5_name = nil %}{% assign param5_type = nil %}{% assign param5_value = nil %}
+    {% assign param6_name = nil %}{% assign param6_type = nil %}{% assign param6_value = nil %}
+    {% if collection_data.params %}{% for param in collection_data.params %}
+
+        {% assign param_name = param %}
+        {% assign param_source = wix.params[param_name] %}
+        {% unless param_source %}
+            {% continue %}
+        {% endunless %}
+
+        {% assign param_type = 'DROP_DOWN' %}
+        {% case param_source %}
+            {% when 'color' %}
+                {% assign param_type = 'COLOR' %}
+                {% capture param_value %}{% include color_wix.html color=item.color %}{% endcapture %}
+            {% when 'material' %}
+                {% assign param_value = material | capitalize %}
+            {% when 'martindale' %}
+                {% assign param_value = martindale %}
+            {% when 'density' %}
+                {% assign param_value = density %}
+            {% when 'legs' %}
+                {% assign param_value = item.legs | capitalize %}
+            {% else %}
+                {% assign param_value = item[param_source] %}
+        {% endcase %}
+
+        {% case forloop.index %}
+            {% when 1 %}{% assign param1_name = param_name %}{% assign param1_type = param_type %}{% assign param1_value = param_value %}
+            {% when 2 %}{% assign param2_name = param_name %}{% assign param2_type = param_type %}{% assign param2_value = param_value %}
+            {% when 3 %}{% assign param3_name = param_name %}{% assign param3_type = param_type %}{% assign param3_value = param_value %}
+            {% when 4 %}{% assign param4_name = param_name %}{% assign param4_type = param_type %}{% assign param4_value = param_value %}
+            {% when 5 %}{% assign param5_name = param_name %}{% assign param5_type = param_type %}{% assign param5_value = param_value %}
+            {% when 6 %}{% assign param6_name = param_name %}{% assign param6_type = param_type %}{% assign param6_value = param_value %}
+            {% else %}{% break %}
+        {% endcase %}
+    {% endfor %}{% endif %}
+
+    {% assign input1_caption = nil %}{% assign input1_limit = nil %}{% assign input1_required = nil %}
+    {% assign input2_caption = nil %}{% assign input2_limit = nil %}{% assign input2_required = nil %}
+    {% if collection_data.inputs %}{% for input in collection_data.inputs %}
+        {% assign input_caption = input %}
+        {% assign input_limit = 500 %}
+        {% assign input_required = 'FALSE' %}
+        {% case forloop.index %}
+            {% when 1 %}{% assign input1_caption = input_caption %}{% assign input1_limit = input_limit %}{% assign input1_required = input_required %}
+            {% when 2 %}{% assign input2_caption = input_caption %}{% assign input2_limit = input_limit %}{% assign input2_required = input_required %}
+            {% else %}{% break %}
+        {% endcase %}
+    {% endfor %}}{% endif %}
 
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wix'
@@ -55,28 +114,28 @@
     discountValue=              0
     inventory=                  'InStock'
     weight=                     item.weight
-    productOptionName1=         'Цвет'
-    productOptionType1=         'COLOR'
-    productOptionDescription1=  colorgroup
-    productOptionName2=         'Материал обивки'
-    productOptionType2=         'DROP_DOWN'
-    productOptionDescription2=  material
-    productOptionName3=         'Тест Мартиндейла'
-    productOptionType3=         'DROP_DOWN'
-    productOptionDescription3=  martindale
-    productOptionName4=         'Плотность ткани, г/м²'
-    productOptionType4=         'DROP_DOWN'
-    productOptionDescription4=  density
-    productOptionName5=         'Ширина, см'
-    productOptionType5=         'DROP_DOWN'
-    productOptionDescription5=  item.width
-    productOptionName6=         'Материал ножек'
-    productOptionType6=         'DROP_DOWN'
-    productOptionDescription6=  legs
-    customTextField1=           'Изменить материал обивки'
-    customTextCharLimit1=       500
-    customTextMandatory1=       'FALSE'
-    customTextField2=           'Изменить ножки'
-    customTextCharLimit2=       500
-    customTextMandatory2=       'FALSE'
+    productOptionName1=         param1_name
+    productOptionType1=         param1_type
+    productOptionDescription1=  param1_value
+    productOptionName2=         param2_name
+    productOptionType2=         param2_type
+    productOptionDescription2=  param2_value
+    productOptionName3=         param3_name
+    productOptionType3=         param3_type
+    productOptionDescription3=  param3_value
+    productOptionName4=         param4_name
+    productOptionType4=         param4_type
+    productOptionDescription4=  param4_value
+    productOptionName5=         param5_name
+    productOptionType5=         param5_type
+    productOptionDescription5=  param5_value
+    productOptionName6=         param6_name
+    productOptionType6=         param6_type
+    productOptionDescription6=  param6_value
+    customTextField1=           input1_caption
+    customTextCharLimit1=       input1_limit
+    customTextMandatory1=       input1_required
+    customTextField2=           input2_caption
+    customTextCharLimit2=       input2_limit
+    customTextMandatory2=       input2_required
 %}{% endfor %}
