@@ -1,0 +1,8 @@
+{% capture devnull %}
+    {% assign item = include.item %}
+    {% if item.gallery %}
+        {% capture images %}{{ item.image }};{{ item.gallery | join:';' }}{% endcapture %}
+    {% else %}
+        {% assign images = item.image %}
+    {% endif %}
+{% endcapture %}{% assign devnull=nil %}{{ images }}

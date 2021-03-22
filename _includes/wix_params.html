@@ -1,0 +1,85 @@
+{% capture devnull %}
+
+    {% assign item = include.item %}
+    {% assign material = nil %}
+    {% assign martindale = nil %}
+    {% assign density = nil %}
+
+    {% for m in site.materials %}
+        {% if item.title contains m.title %}
+            {% assign material = m.material %}
+            {% assign martindale = m.martindale %}
+            {% assign density = m.density %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    {% unless material %}
+        {% assign material = item.material %}
+    {% endunless %}
+    {% unless martindale %}
+        {% assign martindale = item.martindale %}
+    {% endunless %}
+    {% unless density %}
+        {% assign density = item.density %}
+    {% endunless %}
+
+    {% capture title %}{% include text.html text=item.title %}{% endcapture %}
+    {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
+
+    {% assign wix = site.data.wix %}
+    {% if wix.collections[item.section] %}
+        {% assign collection_data = wix.collections[item.section] %}
+    {% else %}
+        {% assign collection_data = wix.collections['_'] %}
+    {% endif %}
+
+    {% assign p1_name = nil %}{% assign p1_type = nil %}{% assign p1_value = nil %}
+    {% assign p2_name = nil %}{% assign p2_type = nil %}{% assign p2_value = nil %}
+    {% assign p3_name = nil %}{% assign p3_type = nil %}{% assign p3_value = nil %}
+    {% assign p4_name = nil %}{% assign p4_type = nil %}{% assign p4_value = nil %}
+    {% assign p5_name = nil %}{% assign p5_type = nil %}{% assign p5_value = nil %}
+    {% assign p6_name = nil %}{% assign p6_type = nil %}{% assign p6_value = nil %}
+    {% if collection_data.params %}{% for p in collection_data.params %}
+
+        {% assign p_name = p %}
+        {% assign p_source = wix.params[p_name] %}
+        {% unless p_source %}
+            {% continue %}
+        {% endunless %}
+
+        {% assign p_type = 'DROP_DOWN' %}
+        {% case p_source %}
+            {% when 'color' %}
+                {% assign p_type = 'COLOR' %}
+                {% capture p_value %}{% include color_wix.html color=item.color %}{% endcapture %}
+            {% when 'material' %}
+                {% assign p_value = material | capitalize %}
+            {% when 'martindale' %}
+                {% assign p_value = martindale %}
+            {% when 'density' %}
+                {% assign p_value = density %}
+            {% when 'legs' %}
+                {% assign p_value = item.legs | capitalize %}
+            {% else %}
+                {% assign p_value = item[p_source] %}
+        {% endcase %}
+
+        {% case forloop.index %}
+            {% when 1 %}{% assign p1_name = p_name %}{% assign p1_type = p_type %}{% assign p1_value = p_value %}
+            {% when 2 %}{% assign p2_name = p_name %}{% assign p2_type = p_type %}{% assign p2_value = p_value %}
+            {% when 3 %}{% assign p3_name = p_name %}{% assign p3_type = p_type %}{% assign p3_value = p_value %}
+            {% when 4 %}{% assign p4_name = p_name %}{% assign p4_type = p_type %}{% assign p4_value = p_value %}
+            {% when 5 %}{% assign p5_name = p_name %}{% assign p5_type = p_type %}{% assign p5_value = p_value %}
+            {% when 6 %}{% assign p6_name = p_name %}{% assign p6_type = p_type %}{% assign p6_value = p_value %}
+            {% else %}{% break %}
+        {% endcase %}
+    {% endfor %}{% endif %}
+
+{% endcapture %}{% assign devnull=nil %}{{
+p1_name }}~{{ p1_type }}~{{ p1_value }}|{{
+p2_name }}~{{ p2_type }}~{{ p2_value }}|{{
+p3_name }}~{{ p3_type }}~{{ p3_value }}|{{
+p4_name }}~{{ p4_type }}~{{ p4_value }}|{{
+p5_name }}~{{ p5_type }}~{{ p5_value }}|{{
+p6_name }}~{{ p6_type }}~{{ p6_value }}

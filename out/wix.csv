@@ -2,79 +2,38 @@
 ---
 {% include csv_header.html type="wix" %}{% for item in site.items %}{% capture devnull %}
 
+    {% assign parent_item = nil %}
+    {% assign child_items = nil %}
+    {% assign mode = 'REGULAR' %}
+    {% if item.parent %}
+        {% assign parent_item = site.items | where:'slug',item.parent %}
+        {% if parent_item.size > 0 %}
+            {% assign mode = 'CHILD' %}
+            {% assign parent_item = parent_item.first %}
+        {% else %}
+            {% assign parent_item = nil %}
+        {% endif %}
+    {% else %}
+        {% assign child_items = site.items | where:'parent',item.slug %}
+        {% if child_items.size > 0 %}
+            {% assign mode = 'PARENT' %}
+        {% else %}
+            {% assign child_items = nil %}
+        {% endif %}
+    {% endif %}
+
     {% capture description %}{% include description_wix.html item=item %}{% endcapture %}
     {% capture description %}{% include text.html text=description %}{% endcapture %}
 
-    {% assign material = nil %}
-    {% assign martindale = nil %}
-    {% assign density = nil %}
+    {% capture images %}{% include wix_images.html item=item %}{% endcapture %}
 
-    {% for m in site.materials %}
-        {% if item.title contains m.title %}
-            {% assign material = m.material %}
-            {% assign martindale = m.martindale %}
-            {% assign density = m.density %}
-            {% break %}
-        {% endif %}
-    {% endfor %}
-
-    {% unless material %}
-        {% assign material = item.material %}
-    {% endunless %}
-    {% unless martindale %}
-        {% assign martindale = item.martindale %}
-    {% endunless %}
-    {% unless density %}
-        {% assign density = item.density %}
-    {% endunless %}
-
-    {% if item.gallery %}
-        {% capture images %}{{ item.image }};{{ item.gallery | join: ";" }}{% endcapture %}
-    {% else %}
-        {% assign images = item.image %}
-    {% endif %}
-
-    {% capture title %}{% include text.html text=item.title %}{% endcapture %}
-    {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
-
-    {% assign wix = site.data.wix %}
-    {% if wix.collections[item.section] %}
-        {% assign collection_data = wix.collections[item.section] %}
-    {% else %}
-        {% assign collection_data = wix.collections['_'] %}
-    {% endif %}
-
-    {% assign param1_name = nil %}{% assign param1_type = nil %}{% assign param1_value = nil %}
-    {% assign param2_name = nil %}{% assign param2_type = nil %}{% assign param2_value = nil %}
-    {% assign param3_name = nil %}{% assign param3_type = nil %}{% assign param3_value = nil %}
-    {% assign param4_name = nil %}{% assign param4_type = nil %}{% assign param4_value = nil %}
-    {% assign param5_name = nil %}{% assign param5_type = nil %}{% assign param5_value = nil %}
-    {% assign param6_name = nil %}{% assign param6_type = nil %}{% assign param6_value = nil %}
-    {% if collection_data.params %}{% for param in collection_data.params %}
-
-        {% assign param_name = param %}
-        {% assign param_source = wix.params[param_name] %}
-        {% unless param_source %}
-            {% continue %}
-        {% endunless %}
-
-        {% assign param_type = 'DROP_DOWN' %}
-        {% case param_source %}
-            {% when 'color' %}
-                {% assign param_type = 'COLOR' %}
-                {% capture param_value %}{% include color_wix.html color=item.color %}{% endcapture %}
-            {% when 'material' %}
-                {% assign param_value = material | capitalize %}
-            {% when 'martindale' %}
-                {% assign param_value = martindale %}
-            {% when 'density' %}
-                {% assign param_value = density %}
-            {% when 'legs' %}
-                {% assign param_value = item.legs | capitalize %}
-            {% else %}
-                {% assign param_value = item[param_source] %}
-        {% endcase %}
-
+    {% capture params_raw %}{% include wix_params.html item=item %}{% endcapture %}
+    {% assign param_raw_list = params_raw | split:'|' %}
+    {% for param_raw in param_raw_list %}
+        {% assign param_parts = param_raw | split:'~' %}
+        {% assign param_name = param_parts[0] %}
+        {% assign param_type = param_parts[1] %}
+        {% assign param_value = param_parts[2] %}
         {% case forloop.index %}
             {% when 1 %}{% assign param1_name = param_name %}{% assign param1_type = param_type %}{% assign param1_value = param_value %}
             {% when 2 %}{% assign param2_name = param_name %}{% assign param2_type = param_type %}{% assign param2_value = param_value %}
@@ -82,9 +41,8 @@
             {% when 4 %}{% assign param4_name = param_name %}{% assign param4_type = param_type %}{% assign param4_value = param_value %}
             {% when 5 %}{% assign param5_name = param_name %}{% assign param5_type = param_type %}{% assign param5_value = param_value %}
             {% when 6 %}{% assign param6_name = param_name %}{% assign param6_type = param_type %}{% assign param6_value = param_value %}
-            {% else %}{% break %}
         {% endcase %}
-    {% endfor %}{% endif %}
+    {% endfor %}
 
     {% assign input1_caption = nil %}{% assign input1_limit = nil %}{% assign input1_required = nil %}
     {% assign input2_caption = nil %}{% assign input2_limit = nil %}{% assign input2_required = nil %}
@@ -99,43 +57,172 @@
         {% endcase %}
     {% endfor %}}{% endif %}
 
+
+    {% case mode %}
+        {% when 'REGULAR' %}
+            {% capture row %}{% include csv_row.html type='wix'
+                handleId=                   item.slug
+                fieldType=                  'Product'
+                name=                       title
+                description=                description
+                productImageUrl=            images
+                collection=                 item.section
+                price=                      item.price
+                visible=                    is_active
+                discountMode=               'PERCENT'
+                discountValue=              0
+                inventory=                  'InStock'
+                weight=                     item.weight
+                productOptionName1=         param1_name
+                productOptionType1=         param1_type
+                productOptionDescription1=  param1_value
+                productOptionName2=         param2_name
+                productOptionType2=         param2_type
+                productOptionDescription2=  param2_value
+                productOptionName3=         param3_name
+                productOptionType3=         param3_type
+                productOptionDescription3=  param3_value
+                productOptionName4=         param4_name
+                productOptionType4=         param4_type
+                productOptionDescription4=  param4_value
+                productOptionName5=         param5_name
+                productOptionType5=         param5_type
+                productOptionDescription5=  param5_value
+                productOptionName6=         param6_name
+                productOptionType6=         param6_type
+                productOptionDescription6=  param6_value
+                customTextField1=           input1_caption
+                customTextCharLimit1=       input1_limit
+                customTextMandatory1=       input1_required
+                customTextField2=           input2_caption
+                customTextCharLimit2=       input2_limit
+                customTextMandatory2=       input2_required
+            %}{% endcapture %}
+
+        {% when 'PARENT' %}
+
+            {% assign param1_value = param1_value | prepend:';' | append:';' %}
+            {% assign param2_value = param2_value | prepend:';' | append:';' %}
+            {% assign param3_value = param3_value | prepend:';' | append:';' %}
+            {% assign param4_value = param4_value | prepend:';' | append:';' %}
+            {% assign param5_value = param5_value | prepend:';' | append:';' %}
+            {% assign param6_value = param6_value | prepend:';' | append:';' %}
+            {% for child_item in child_items %}
+
+                {% capture child_images %}{% include wix_images.html item=child_item %}{% endcapture %}
+                {% assign images = images | append:';' | append:child_images %}
+
+                {% capture child_params_raw %}{% include wix_params.html item=child_item %}{% endcapture %}
+                {% assign child_param_raw_list = child_params_raw | split:'|' %}
+                {% for child_param_raw in child_param_raw_list %}
+                    {% assign child_param_parts = child_param_raw | split:'~' %}
+                    {% assign child_param_value_added = child_param_parts[2] | append:';' %}
+                    {% assign child_param_value_search = child_param_value_added | prepend:';' %}
+                    {% case forloop.index %}
+                        {% when 1 %}
+                            {% unless param1_value contains child_param_value_search %}
+                                {% assign param1_value = param1_value | append:child_param_value_added %}
+                            {% endunless %}
+                        {% when 2 %}
+                            {% unless param2_value contains child_param_value_search %}
+                                {% assign param2_value = param2_value | append:child_param_value_added %}
+                            {% endunless %}
+                        {% when 3 %}
+                            {% unless param3_value contains child_param_value_search %}
+                                {% assign param3_value = param3_value | append:child_param_value_added %}
+                            {% endunless %}
+                        {% when 4 %}
+                            {% unless param4_value contains child_param_value_search %}
+                                {% assign param4_value = param4_value | append:child_param_value_added %}
+                            {% endunless %}
+                        {% when 5 %}
+                            {% unless param5_value contains child_param_value_search %}
+                                {% assign param5_value = param5_value | append:child_param_value_added %}
+                            {% endunless %}
+                        {% when 6 %}
+                            {% unless param6_value contains child_param_value_search %}
+                                {% assign param6_value = param6_value | append:child_param_value_added %}
+                            {% endunless %}
+                    {% endcase %}
+                {% endfor %}
+
+            {% endfor %}
+            {% assign param1_value = param1_value | prepend:';' | append:';' | replace:';;','' %}
+            {% assign param2_value = param2_value | prepend:';' | append:';' | replace:';;','' %}
+            {% assign param3_value = param3_value | prepend:';' | append:';' | replace:';;','' %}
+            {% assign param4_value = param4_value | prepend:';' | append:';' | replace:';;','' %}
+            {% assign param5_value = param5_value | prepend:';' | append:';' | replace:';;','' %}
+            {% assign param6_value = param6_value | prepend:';' | append:';' | replace:';;','' %}
+
+            {% capture row %}{% include csv_row.html type='wix'
+                handleId=                   item.slug
+                fieldType=                  'Product'
+                name=                       title
+                description=                description
+                productImageUrl=            images
+                collection=                 item.section
+                price=                      item.price
+                visible=                    is_active
+                discountMode=               'PERCENT'
+                discountValue=              0
+                inventory=                  'InStock'
+                weight=                     item.weight
+                productOptionName1=         param1_name
+                productOptionType1=         param1_type
+                productOptionDescription1=  param1_value
+                productOptionName2=         param2_name
+                productOptionType2=         param2_type
+                productOptionDescription2=  param2_value
+                productOptionName3=         param3_name
+                productOptionType3=         param3_type
+                productOptionDescription3=  param3_value
+                productOptionName4=         param4_name
+                productOptionType4=         param4_type
+                productOptionDescription4=  param4_value
+                productOptionName5=         param5_name
+                productOptionType5=         param5_type
+                productOptionDescription5=  param5_value
+                productOptionName6=         param6_name
+                productOptionType6=         param6_type
+                productOptionDescription6=  param6_value
+                customTextField1=           input1_caption
+                customTextCharLimit1=       input1_limit
+                customTextMandatory1=       input1_required
+                customTextField2=           input2_caption
+                customTextCharLimit2=       input2_limit
+                customTextMandatory2=       input2_required
+            %}{% endcapture %}
+
+        {% when 'CHILD' %}
+            {% assign surcharge = parent_item.price | minus:item.price %}
+            {% capture row %}{% include csv_row.html type='wix'
+                handleId=                   parent_item.slug
+                fieldType=                  'Variant'
+                productImageUrl=            images
+                surcharge=                  surcharge
+                visible=                    is_active
+                inventory=                  'InStock'
+                weight=                     item.weight
+                productOptionName1=         param1_name
+                productOptionType1=         param1_type
+                productOptionDescription1=  param1_value
+                productOptionName2=         param2_name
+                productOptionType2=         param2_type
+                productOptionDescription2=  param2_value
+                productOptionName3=         param3_name
+                productOptionType3=         param3_type
+                productOptionDescription3=  param3_value
+                productOptionName4=         param4_name
+                productOptionType4=         param4_type
+                productOptionDescription4=  param4_value
+                productOptionName5=         param5_name
+                productOptionType5=         param5_type
+                productOptionDescription5=  param5_value
+                productOptionName6=         param6_name
+                productOptionType6=         param6_type
+                productOptionDescription6=  param6_value
+            %}{% endcapture %}
+    {% endcase %}
+
 {% endcapture %}{% assign devnull=nil %}
-{% include csv_row.html type='wix'
-    handleId=                   item.slug
-    title=                      title
-    fieldType=                  'Product'
-    name=                       title
-    description=                description
-    productImageUrl=            images
-    collection=                 item.section
-    price=                      item.price
-    visible=                    is_active
-    discountMode=               'PERCENT'
-    discountValue=              0
-    inventory=                  'InStock'
-    weight=                     item.weight
-    productOptionName1=         param1_name
-    productOptionType1=         param1_type
-    productOptionDescription1=  param1_value
-    productOptionName2=         param2_name
-    productOptionType2=         param2_type
-    productOptionDescription2=  param2_value
-    productOptionName3=         param3_name
-    productOptionType3=         param3_type
-    productOptionDescription3=  param3_value
-    productOptionName4=         param4_name
-    productOptionType4=         param4_type
-    productOptionDescription4=  param4_value
-    productOptionName5=         param5_name
-    productOptionType5=         param5_type
-    productOptionDescription5=  param5_value
-    productOptionName6=         param6_name
-    productOptionType6=         param6_type
-    productOptionDescription6=  param6_value
-    customTextField1=           input1_caption
-    customTextCharLimit1=       input1_limit
-    customTextMandatory1=       input1_required
-    customTextField2=           input2_caption
-    customTextCharLimit2=       input2_limit
-    customTextMandatory2=       input2_required
-%}{% endfor %}
+{{ row }}{% endfor %}
