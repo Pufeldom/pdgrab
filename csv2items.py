@@ -70,6 +70,7 @@ with open(src_file_path, newline='') as csvfile:
 
             # Build new destination content
             dest_file_content = f"""---
+parent: 
 hru: {row['Символьный код']}
 title: {row['Название']}
 price: {int(float(row['Цена']))}
