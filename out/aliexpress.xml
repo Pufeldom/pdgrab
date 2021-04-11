@@ -1,0 +1,63 @@
+---
+permalink: /out/aliexpress.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<yml_catalog>
+    <shop>{% assign category_id = 'taburety-i-pufiki' %}
+        <categories>
+            <!-- Категории -->
+            <category id="{{ category_id }}">Табуреты и пуфики</category>
+        </categories>
+        <offers>
+        <!-- Товары -->
+        {% for item in site.items %}{% if item.active %}{% assign title_lc = item.title | downcase %}{% if title_lc contains 'пуф' or title_lc contains 'банкетка' %}
+            <offer id="{{ item.slug }}" group_id="{{ item.slug }}gr">
+                <!-- Информация о товаре -->{% capture devnull %}
+
+                    {% assign material = nil %}
+                    {% assign martindale = nil %}
+                    {% assign density = nil %}
+
+                    {% for m in site.materials %}
+                        {% if item.title contains m.title %}
+                            {% assign material = m.material %}
+                            {% assign martindale = m.martindale %}
+                            {% assign density = m.density %}
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% unless material %}
+                        {% assign material = item.material %}
+                    {% endunless %}
+                    {% unless martindale %}
+                        {% assign martindale = item.martindale %}
+                    {% endunless %}
+                    {% unless density %}
+                        {% assign density = item.density %}
+                    {% endunless %}
+
+                {% endcapture %}{% assign devnull=nil %}
+                <name>{% include xmltext.html text=item.title %}</name>
+                <vendor>Пуфельдом</vendor>
+                <price>{{ item.price | times:1 | plus:470 }}</price>
+                <categoryId>{{ category_id }}</categoryId>
+                <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
+                <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
+                <description>{% include cdata.html text=item.content %}</description>
+                {% if item.color %}<param name="Цвет">{{ item.color }}</param>
+                {% endif %}{% if material %}<param name="Материал обивки">{{ material }}</param>
+                {% endif %}{% if martindale %}<param name="Тест Мартиндейла">{{ martindale }}</param>
+                {% endif %}{% if density %}<param name="Плотность ткани, г/м²">{{ density }}</param>
+                {% endif %}{% if item.legs %}<param name="Материал ножек">{{ item.legs }}</param>
+                {% endif %}{% if item.legs_color %}<param name="Цвет ножек">{{ item.legs_color }}</param>
+                {% endif %}{% if item.weight %}<weight>{{ item.weight }}</weight>
+                {% endif %}{% if item.width %}<length>{{ item.width }}</length>
+                {% endif %}{% if item.depth %}<width>{{ item.width }}</width>
+                {% endif %}{% if item.height %}<height>{{ item.height }}</height>
+                {% endif %}<quantity>10</quantity>
+            </offer>
+            {% endif %}{% endif %}{% endfor %}
+        </offers>
+  </shop>
+</yml_catalog>
