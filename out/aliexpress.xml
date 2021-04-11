@@ -10,7 +10,7 @@ permalink: /out/aliexpress.xml
         </categories>
         <offers>
         <!-- Товары -->
-        {% for item in site.items %}{% if item.active %}{% assign title_lc = item.title | downcase %}{% if title_lc contains 'пуф' or title_lc contains 'банкетка' %}
+        {% for item in site.items %}{% if item.active and item.weight and item.image %}{% assign title_lc = item.title | downcase %}{% if title_lc contains 'пуф' or title_lc contains 'банкетка' %}
             <offer id="{{ item.slug }}" group_id="{{ item.slug }}gr">
                 <!-- Информация о товаре -->{% capture devnull %}
 
