@@ -122,7 +122,9 @@
 
 В файле [aliexpress.xml](https://github.com/Pufeldom/pdgrab/edit/master/out/aliexpress.xml) задаются параметры, экспортируемые на площадку Aliexpress.
 
-Цена для Aliexpress увеличена на фиксированное значение, это значение задаётся через `plus:` внутри поля price: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L43
+Описание для Aliexpress снабжено дополнительной текстовой припиской, её текст задаётся внутри `{% capture description %}`: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L40
+
+Цена для Aliexpress увеличена на фиксированное значение, это значение задаётся через `plus:` внутри поля price: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L50
 
 ### Управление структурой CSV-файлов
 
