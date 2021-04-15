@@ -37,6 +37,13 @@ permalink: /out/aliexpress.xml
                         {% assign density = item.density %}
                     {% endunless %}
 
+                    {% capture description %}
+{{ item.content }}
+
+Оттенки товаров и материалов могут отличаться от реальных.
+Это зависит от индивидуальных настроек Вашего экрана.
+                    {% endcapture %}
+
                 {% endcapture %}{% assign devnull=nil %}
                 <name>{% include xmltext.html text=item.title %}</name>
                 <vendor>Пуфельдом</vendor>
@@ -44,7 +51,7 @@ permalink: /out/aliexpress.xml
                 <categoryId>{{ category_id }}</categoryId>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
-                <description>{% include cdata.html text=item.content %}</description>
+                <description>{% include cdata.html text=description %}</description>
                 {% if item.color %}<param name="Цвет">{{ item.color }}</param>
                 {% endif %}{% if material %}<param name="Материал обивки">{{ material }}</param>
                 {% endif %}{% if martindale %}<param name="Тест Мартиндейла">{{ martindale }}</param>
