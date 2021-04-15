@@ -98,6 +98,6 @@ youla: {youla_str}
                 dest_file_content = dest_file_content + row['Описание'].replace('<br />', '') + '\n'
 
             # Write destination file
-            with io.open(dest_file_path, 'w', encoding='utf8') as f:
+            with io.open(dest_file_path, 'w', encoding='utf8', newline="") as f:
                 print(f'- write {dest_file_path}')
                 f.write(dest_file_content)

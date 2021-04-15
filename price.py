@@ -51,6 +51,6 @@ for entry in os.listdir(ITEMS_DIR):
     new_price = price + price_delta
     file_content = re.sub(PRICE_RE, lambda m: m.group(1) + str(new_price) + m.group(3), file_content, 1)
 
-    with io.open(file_path, 'w', encoding='utf8') as f:
+    with io.open(file_path, 'w', encoding='utf8', newline='') as f:
         print(f'- update {file_basename} price: {price} -> {new_price}')
         f.write(file_content)
