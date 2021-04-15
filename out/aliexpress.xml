@@ -57,7 +57,7 @@ permalink: /out/aliexpress.xml
                 {% endif %}{% if item.depth %}<width>{{ item.width }}</width>
                 {% endif %}{% if item.height %}<height>{{ item.height }}</height>
                 {% endif %}<quantity>10</quantity>
-                <param name="Размеры, см">{{ item.width }}×{{ if item.depth }}×{{ item.height }}</param>
+                <param name="Размеры, см">{{ item.width }}×{{ item.depth }}×{{ item.height }}</param>
             </offer>
             {% endif %}{% endif %}{% endfor %}
         </offers>
