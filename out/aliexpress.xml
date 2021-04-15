@@ -51,11 +51,13 @@ permalink: /out/aliexpress.xml
                 {% endif %}{% if density %}<param name="Плотность ткани, г/м²">{{ density }}</param>
                 {% endif %}{% if item.legs %}<param name="Материал ножек">{{ item.legs }}</param>
                 {% endif %}{% if item.legs_color %}<param name="Цвет ножек">{{ item.legs_color }}</param>
+                {% endif %}{% if item.foam %}<param name="Толщина поролона, см">{{ item.foam }}</param>
                 {% endif %}{% if item.weight %}<weight>{{ item.weight }}</weight>
                 {% endif %}{% if item.width %}<length>{{ item.width }}</length>
                 {% endif %}{% if item.depth %}<width>{{ item.width }}</width>
                 {% endif %}{% if item.height %}<height>{{ item.height }}</height>
                 {% endif %}<quantity>10</quantity>
+                <param name="Размеры, см">{{ item.width }}×{% if item.depth %}×{{ item.height }}</param>
             </offer>
             {% endif %}{% endif %}{% endfor %}
         </offers>
