@@ -54,7 +54,7 @@ permalink: /out/aliexpress.xml
                 {% endif %}{% if item.foam %}<param name="Толщина поролона, см">{{ item.foam }}</param>
                 {% endif %}{% if item.weight %}<weight>{{ item.weight }}</weight>
                 {% endif %}{% if item.width %}<length>{{ item.width }}</length>
-                {% endif %}{% if item.depth %}<width>{{ item.width }}</width>
+                {% endif %}{% if item.depth %}<width>{{ item.depth }}</width>
                 {% endif %}{% if item.height %}<height>{{ item.height }}</height>
                 {% endif %}<quantity>10</quantity>
                 <param name="Размеры, см">{{ item.width }}×{{ item.depth }}×{{ item.height }}</param>
