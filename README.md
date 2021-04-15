@@ -335,6 +335,12 @@ items-202103210236-wix.csv
 
 Жирным отмечены те, которые предположительно будут нужны чаще других: (`pull`, `diff`, `commit`, `push`).
 
+Первичная настройка имени и емейла (указать адекватные значения вместо примера):
+```bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
 Первичное скачивание репозитория:
 ```bash
 git clone https://github.com/Pufeldom/pdgrab
