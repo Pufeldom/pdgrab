@@ -47,7 +47,7 @@ permalink: /out/aliexpress.xml
                 {% endcapture %}{% assign devnull=nil %}
                 <name>{% include xmltext.html text=item.title %}</name>
                 <vendor>Пуфельдом</vendor>
-                <price>{{ item.price | times:1 | plus:470 }}</price>
+                <price>{{ item.price | times:1 | plus:100 }}</price>
                 <categoryId>{{ category_id }}</categoryId>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
