@@ -1,0 +1,42 @@
+---
+permalink: /out/yandex.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed version="1">
+    <offers>
+    {% for item in site.items %}{% if item.active and item.image %}{% capture devnull %}
+        {% assign title_lc = item.title | downcase %}
+        {% if title_lc contains 'пуф' %}
+            {% assign category = 'Пуфики' %}
+        {% elsif title_lc contains 'банкетка' %}
+            {% assign category = 'Банкетки и скамьи' %}
+        {% else %}
+            {% assign category = nil %}
+        {% endif %}
+    {% endcapture %}{% assign devnull = nil %}{% if category %}
+        <offer>
+            <id>{{ item.slug }}</id>
+            <seller>
+                <contacts>
+                    <phone>+7 913 470-58-88</phone>
+                    <contact-method>only-phone</contact-method>
+                </contacts>
+                <locations>
+                    <location>
+                        <address>Новосибирск, ул. Станционная, д. 78</address>
+                    </location>
+                </locations>
+            </seller>
+            <title>{% include xmltext.html text=item.title %}</title>
+            <description>{% capture description %}{% include description.html item=item %}{% endcapture %}{% include cdata.html text=description %}</description>
+            <condition>new</condition>
+            <category>{{ category }}</category>
+            <images>
+                <image>{{ item.image }}</image>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
+                <image>{{ pic_url }}</image>{% endif %}{% endfor %}{% endif %}
+            </images>
+            <price>{{ item.price }}</price>
+        </offer>
+        {% endif %}{% endif %}{% endfor %}
+    </offers>
+</feed>
