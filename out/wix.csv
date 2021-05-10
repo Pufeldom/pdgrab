@@ -36,6 +36,7 @@
 
     {% capture title %}{% include text.html text=item.title %}{% endcapture %}
     {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
+    {% if item.discount %}{% assign discount = item.discount %}{% else %}{% assign discount = 0 %}{% endif %}
 
     {% if item.stock %}
         {% assign ribbon = 'В наличии' %}
@@ -120,7 +121,7 @@
     price=                      item.price
     visible=                    is_active
     discountMode=               'PERCENT'
-    discountValue=              0
+    discountValue=              discount
     inventory=                  'InStock'
     weight=                     item.weight
     productOptionName1=         param1_name

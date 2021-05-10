@@ -47,6 +47,13 @@ with open(src_file_path, newline='') as csvfile:
                 with io.open(dest_file_path, 'r', encoding='utf8') as f:
                     dest_file_content = f.read()
                     try:
+                        [(discount)] = re.findall(
+                            r'\ndiscount:\s*([\S\s]*?)\nsection:',
+                            dest_file_content,
+                        )
+                    except ValueError:
+                        print(f'  WARNING: cannot get existing discount value for {dest_file_path}')
+                    try:
                         [(legs_color, foam)] = re.findall(
                             r'\nlegs_color:\s*([\S\s]*?)\nfoam:\s*([\S\s]*?)\nmartindale:',
                             dest_file_content,
@@ -74,6 +81,7 @@ parent:
 hru: {row['Символьный код']}
 title: {row['Название']}
 price: {int(float(row['Цена']))}
+discount: {discount}
 section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
 width: {row['Ширина, см']}
