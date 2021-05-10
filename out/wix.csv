@@ -37,6 +37,14 @@
     {% capture title %}{% include text.html text=item.title %}{% endcapture %}
     {% capture is_active %}{% include bool_en.html val=item.active %}{% endcapture %}
 
+    {% if item.stock %}
+        {% assign ribbon = 'В наличии' %}
+        {% capture collection %}{{ ribbon }};{{ item.section }}{% endcapture %}
+    {% else %}
+        {% assign ribbon = nil %}
+        {% assign collection = item.section %}
+    {% endif %}
+
     {% assign wix = site.data.wix %}
     {% if wix.collections[item.section] %}
         {% assign collection_data = wix.collections[item.section] %}
@@ -107,7 +115,8 @@
     name=                       title
     description=                description
     productImageUrl=            images
-    collection=                 item.section
+    collection=                 collection
+    ribbon=                     ribbon
     price=                      item.price
     visible=                    is_active
     discountMode=               'PERCENT'
