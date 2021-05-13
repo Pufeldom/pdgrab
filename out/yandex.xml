@@ -19,7 +19,7 @@ permalink: /out/yandex.xml
             <seller>
                 <contacts>
                     <phone>+7 913 470-58-88</phone>
-                    <contact-method>only-phone</contact-method>
+                    <contact-method>any</contact-method>
                 </contacts>
                 <locations>
                     <location>
