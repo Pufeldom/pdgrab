@@ -10,7 +10,7 @@ permalink: /out/yandex.xml
             {% assign category = 'Пуфики' %}
         {% elsif title_lc contains 'банкетка' %}
             {% assign category = 'Банкетки и скамьи' %}
-        {% elsif title_lc contains 'вешалка' %}
+        {% elsif title_lc contains 'вешалка' or title_lc contains 'вешалок' %}
             {% assign category = 'Вешалки настенные' %}
         {% elsif title_lc contains 'диванчик для собаки' %}
             {% assign category = 'Лежаки, домики, спальные места' %}
