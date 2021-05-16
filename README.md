@@ -124,7 +124,11 @@
 
 Описание для Aliexpress снабжено дополнительной текстовой припиской, её текст задаётся внутри блока `capture description`: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L40
 
-Цена для Aliexpress увеличена на фиксированное значение, это значение задаётся через `plus:` внутри поля price: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L50
+#### Файл настроек для Aliexpress
+
+Для Aliexpress существует отдельный файл конфигурации [_data/aliexpress.yml](https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml)
+
+Цены для Aliexpress увеличены на фиксированное значение, оно задаётся в поле `surcharge`: https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml#L1
 
 ### Управление структурой CSV-файлов
 
