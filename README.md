@@ -124,11 +124,22 @@
 
 Описание для Aliexpress снабжено дополнительной текстовой припиской, её текст задаётся внутри блока `capture description`: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L47
 
+В фид Aliexpress попадают товары, соответствующие следующим условиям:
+1. поле `active` имеет значение `true`
+2. задано поле `weight`
+3. заголовок содержит одно из ключевых слов для категорий (см. ниже)
+
 #### Файл настроек для Aliexpress
 
 Для Aliexpress существует отдельный файл конфигурации [_data/aliexpress.yml](https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml)
 
 Цены для Aliexpress увеличены на фиксированное значение, оно задаётся в поле `surcharge`: https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml#L1
+
+Для присвоения товару категории происходит поиск ключевых слов в заголовке товара. Искомые слова задаются в ключе `title_to_category`: https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml#L4
+
+Слова в заголовке ищутся без учёта регистра (запись «пуф», «Пуф» или «ПУФ» работает при поиске идентично). Срабатывает первое найденное слово, определяя для товара категорию. Категория должна присутствовать в ключе `categories`: https://github.com/Pufeldom/pdgrab/blob/master/_data/aliexpress.yml#L2
+
+Если в заголовке не найдено ни одно из ключевых слов либо категория отсутствует в списке — товар не попадёт в фид.
 
 ### Управление структурой CSV-файлов
 

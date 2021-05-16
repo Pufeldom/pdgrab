@@ -3,14 +3,14 @@ permalink: /out/aliexpress.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <yml_catalog>
-    <shop>{% assign category_id = 'taburety-i-pufiki' %}
+    <shop>
         <categories>
-            <!-- Категории -->
-            <category id="{{ category_id }}">Табуреты и пуфики</category>
+            <!-- Категории -->{% for category_data in site.data.aliexpress.categories %}
+            <category id="{{ category_data[1] }}">{{ category_data[0] }}</category>{% endfor %}
         </categories>
         <offers>
         <!-- Товары -->
-        {% for item in site.items %}{% if item.active and item.weight and item.image %}{% assign title_lc = item.title | downcase %}{% if title_lc contains 'пуф' or title_lc contains 'банкетка' %}
+        {% for item in site.items %}{% if item.active and item.weight and item.image %}{% capture category %}{% include category.html title=item.title searched=site.data.aliexpress.title_to_category %}{% endcapture %}{% if site.data.aliexpress.categories[category] %}
             <offer id="{{ item.slug }}" group_id="{{ item.slug }}gr">
                 <!-- Информация о товаре -->{% capture devnull %}
 
@@ -55,7 +55,7 @@ permalink: /out/aliexpress.xml
                 <name>{% include xmltext.html text=item.title %}</name>
                 <vendor>Пуфельдом</vendor>
                 <price>{{ item.price | times:1 | plus:site.data.aliexpress.surcharge }}</price>
-                <categoryId>{{ category_id }}</categoryId>
+                <categoryId>{{ site.data.aliexpress.categories[category] }}</categoryId>
                 <picture>{{ item.image }}</picture>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <picture>{{ pic_url }}</picture>{% endif %}{% endfor %}{% endif %}
                 <description>{% include cdata.html text=description %}</description>

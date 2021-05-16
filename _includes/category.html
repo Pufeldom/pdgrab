@@ -1,0 +1,11 @@
+{% capture devnull %}
+    {% assign title_lc = include.title | downcase %}
+    {% assign detected_category = nil %}
+    {% for searched_item in include.searched %}
+        {% assign title_substr = searched_item[0] | downcase %}
+        {% if title_lc contains title_substr %}
+            {% assign detected_category = searched_item[1] %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+{% endcapture %}{% assign devnull = nil %}{{ detected_category }}
