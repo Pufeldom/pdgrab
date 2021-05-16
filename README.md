@@ -122,7 +122,7 @@
 
 В файле [aliexpress.xml](https://github.com/Pufeldom/pdgrab/edit/master/out/aliexpress.xml) задаются параметры, экспортируемые на площадку Aliexpress.
 
-Описание для Aliexpress снабжено дополнительной текстовой припиской, её текст задаётся внутри блока `capture description`: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L40
+Описание для Aliexpress снабжено дополнительной текстовой припиской, её текст задаётся внутри блока `capture description`: https://github.com/Pufeldom/pdgrab/blob/master/out/aliexpress.xml#L47
 
 #### Файл настроек для Aliexpress
 

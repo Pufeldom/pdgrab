@@ -37,6 +37,13 @@ permalink: /out/aliexpress.xml
                         {% assign density = item.density %}
                     {% endunless %}
 
+                    {% if item.discount %}
+                        {% assign discount_abs = item.price | times:item.discount | divided_by:100 %}
+                        {% assign price_discount = item.price | minus:discount_abs | plus:site.data.aliexpress.surcharge %}
+                    {% else %}
+                        {% assign price_discount = nil %}
+                    {% endif %}
+
                     {% capture description %}
 {{ item.content }}
 
@@ -59,6 +66,7 @@ permalink: /out/aliexpress.xml
                 {% endif %}{% if item.legs %}<param name="Материал ножек">{{ item.legs }}</param>
                 {% endif %}{% if item.legs_color %}<param name="Цвет ножек">{{ item.legs_color }}</param>
                 {% endif %}{% if item.foam %}<param name="Толщина поролона, см">{{ item.foam }}</param>
+                {% endif %}{% if price_discount %}<param name="Цена со скидкой">{{ price_discount }}</param>
                 {% endif %}{% if item.weight %}<weight>{{ item.weight }}</weight>
                 {% endif %}{% if item.width %}<length>{{ item.width }}</length>
                 {% endif %}{% if item.depth %}<width>{{ item.depth }}</width>
