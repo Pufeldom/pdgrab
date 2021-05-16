@@ -5,16 +5,8 @@ permalink: /out/yandex.xml
 <feed version="1">
     <offers>
     {% for item in site.items %}{% if item.active and item.image %}{% capture devnull %}
-        {% assign title_lc = item.title | downcase %}
-        {% if title_lc contains 'пуф' %}
-            {% assign category = 'Пуфики' %}
-        {% elsif title_lc contains 'банкетка' %}
-            {% assign category = 'Банкетки и скамьи' %}
-        {% elsif title_lc contains 'вешалка' or title_lc contains 'вешалок' %}
-            {% assign category = 'Вешалки настенные' %}
-        {% elsif title_lc contains 'диванчик для собаки' %}
-            {% assign category = 'Лежаки, домики, спальные места' %}
-        {% else %}
+        {% capture category %}{% include category.html title=item.title searched=site.data.yandex.title_to_category %}{% endcapture %}
+        {% if category == '' %}
             {% assign category = nil %}
         {% endif %}
     {% endcapture %}{% assign devnull = nil %}{% if category %}
