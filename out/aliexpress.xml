@@ -43,6 +43,8 @@ permalink: /out/aliexpress.xml
                     {% else %}
                         {% assign price_discount = nil %}
                     {% endif %}
+                    
+                    {% assign title = item.title | replace:'"','' %}
 
                     {% capture description %}
 {{ item.content }}
@@ -52,7 +54,7 @@ permalink: /out/aliexpress.xml
                     {% endcapture %}
 
                 {% endcapture %}{% assign devnull=nil %}
-                <name>{% include xmltext.html text=item.title %}</name>
+                <name>{% include xmltext.html text=title %}</name>
                 <vendor>Пуфельдом</vendor>
                 <price>{{ item.price | times:1 | plus:site.data.aliexpress.surcharge }}</price>
                 <categoryId>{{ site.data.aliexpress.categories[category] }}</categoryId>
