@@ -92,6 +92,7 @@ material: {row['Материал обивки']}
 legs: {row['Материал ножек']}
 legs_color: {legs_color}
 foam: {foam}
+box: нет
 martindale: {row['Тест Мартиндейла']}
 density: {row['Плотность ткани, г/м2']}
 weight: {row['Вес, кг']}
