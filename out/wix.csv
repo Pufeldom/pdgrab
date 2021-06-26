@@ -117,6 +117,7 @@
     description=                description
     productImageUrl=            images
     collection=                 collection
+    sku=                        item.slug
     ribbon=                     ribbon
     price=                      item.price
     visible=                    is_active
