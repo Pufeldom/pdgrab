@@ -148,4 +148,5 @@
     customTextField2=           input2_caption
     customTextCharLimit2=       input2_limit
     customTextMandatory2=       input2_required
+    brand=                      'Пуфельдом'
 %}{% endfor %}
