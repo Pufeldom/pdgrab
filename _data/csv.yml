@@ -52,6 +52,7 @@ wix:
     customTextField2:
     customTextCharLimit2:
     customTextMandatory2:
+    brand:
 
 bitrix:
   delimiter: ';'
