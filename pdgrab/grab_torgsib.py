@@ -101,7 +101,7 @@ class TorgsibPageResult:
         else:
             parser = TorgsibPageParser()
             parser.feed(content)
-            self.title = parser.title
+            self.title = parser.parent_title
             self.items = parser.items
 
             if parser.links:
@@ -114,6 +114,7 @@ class TorgsibPageResult:
 class TorgsibPageParser(HTMLParser, ABC):
     def __init__(self):
         super().__init__()
+        self.parent_title = None
         self.title = None
         self.links = []
         self.items = []
@@ -121,8 +122,10 @@ class TorgsibPageParser(HTMLParser, ABC):
         self._current_item = None
         self._read_item_qty = False
         self._read_title = False
+        self._read_parent_title = False
 
         self._content_nesting = None
+        self._menu_nesting = None
         self._links_nesting = None
         self._item_nesting = None
 
@@ -133,6 +136,9 @@ class TorgsibPageParser(HTMLParser, ABC):
         if sel == 'div.b-content':
             if self._content_nesting is None:
                 self._content_nesting = 0
+        elif sel == 'ul.b-catalog-menu__group-items':
+            if (self._menu_nesting is None):
+                self._menu_nesting = 0
         elif sel == 'ul':
             if (self._content_nesting is not None) and (self._links_nesting is None):
                 self._links_nesting = 0
@@ -146,6 +152,8 @@ class TorgsibPageParser(HTMLParser, ABC):
         if (self._content_nesting == 1) and (sel == 'h1') and (self.title is None) and (not self._read_title):
             self.title = ''
             self._read_title = True
+        if (self._menu_nesting == 2) and (sel == 'a[href].b-catalog-menu__item__link.b-catalog-menu__item__link_hl'):
+            self._read_parent_title = True
         if (self._links_nesting == 2) and (sel == 'a[href]'):
             self.links.append(attrib['href'])
         if (self._item_nesting == 1) and (sel == 'a[href].b-catalog-item__image.b-catalog-item__image_120x120.fancybox'):
@@ -157,6 +165,8 @@ class TorgsibPageParser(HTMLParser, ABC):
 
         if self._content_nesting is not None:
             self._content_nesting = self._content_nesting + 1
+        if self._menu_nesting is not None:
+            self._menu_nesting = self._menu_nesting + 1
         if self._links_nesting is not None:
             self._links_nesting = self._links_nesting + 1
         if self._item_nesting is not None:
@@ -169,6 +179,8 @@ class TorgsibPageParser(HTMLParser, ABC):
             self._current_item.small_pic = attrib['src']
 
     def handle_data(self, data):
+        if self._read_parent_title:
+            self.parent_title = data.strip()
         if self._read_title:
             self.title = self.title + data
         if self._read_item_qty:
@@ -181,6 +193,8 @@ class TorgsibPageParser(HTMLParser, ABC):
     def handle_endtag(self, tag):
         sel = tag
 
+        if self._read_parent_title and (sel == 'a'):
+            self._read_parent_title = False
         if self._read_title and (sel == 'h1'):
             self._read_title = False
         if self._read_item_qty and (sel == 'span'):
@@ -193,6 +207,13 @@ class TorgsibPageParser(HTMLParser, ABC):
                     self._content_nesting = None
                 else:
                     raise Exception('Wrong html structure - div.b-content not properly closed')
+        if self._menu_nesting is not None:
+            self._menu_nesting = self._menu_nesting - 1
+            if self._menu_nesting == 0:
+                if sel == 'ul':
+                    self._links_nesting = None
+                else:
+                    raise Exception('Wrong html structure - ul.b-catalog-menu__group-items not properly closed')
         if self._links_nesting is not None:
             self._links_nesting = self._links_nesting - 1
             if self._links_nesting == 0:
