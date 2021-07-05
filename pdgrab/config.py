@@ -83,7 +83,7 @@ def get_parser():
     parser.optionxform = str  # prevent lowercase params
 
     try:
-        parser.read(get_config_path())
+        parser.read(get_config_path(), encoding='utf-8')
     except BaseException as ex:
         raise PdgrabConfigFileException('Cannot read configuration file: %s' % ex)
 

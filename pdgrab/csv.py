@@ -17,7 +17,7 @@ def write_files(file_path_prefix, items):
         target_cols = config.get_section('csv' + '_' + target_name)
         target_file_path = file_path_prefix + '-' + target_name + '.csv'
         print('- write ' + target_file_path)
-        with open(target_file_path, 'w', newline='') as csvfile:
+        with open(target_file_path, 'w', encoding='utf8', newline='') as csvfile:
             writer = csv.DictWriter(
                 csvfile, fieldnames=target_cols.keys(), dialect=csv.unix_dialect, delimiter=target_delimiter,
                 quoting=csv.QUOTE_MINIMAL,
