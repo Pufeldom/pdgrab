@@ -84,6 +84,7 @@ price: {int(float(row['Цена']))}
 discount: {discount}
 section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
+barcode: 
 cover: нет
 width: {row['Ширина, см']}
 depth: {row['Глубина, см']}
