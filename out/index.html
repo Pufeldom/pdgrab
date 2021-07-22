@@ -9,16 +9,12 @@
     <style>
         ul { padding-left: 0; margin-left: 0; margin-bottom: 0; }
         ul li { padding-left: 0; margin-left: 20px; margin-bottom: 1em; display: inline-block; list-style-type: none; }
-        input { font: inherit; vertical-align: middle; barcode: 
-cover: нет
-width: 7em; }
+        input { font: inherit; vertical-align: middle; width: 7em; }
         table { border-collapse: collapse; }
         table td { padding: 5px; border: 1px solid #777; }
         table tr:nth-child(2n+1) { background-color: #eee; }
         table tr.hidden { display: none; }
-        img { border-barcode: 
-cover: нет
-width: 0; height: 50px; vertical-align: top; }
+        img { border-width: 0; height: 50px; vertical-align: top; }
         [data-gallery-count]::before {
             content: '+' attr(data-gallery-count);
             position: absolute;
@@ -51,7 +47,7 @@ width: 0; height: 50px; vertical-align: top; }
         <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
         <td>{{ item.price }}</td>
         <td>{{ item.discount }}</td>
-        <td>{% if item.discount %}{% assign k = 100 | minus:item.discount | divided_by:100 %}{{ item.price | times:k }}{% endif %}</td>
+        <td>{% if item.discount %}{% assign kp = 100 | minus:item.discount %}{% assign k = kp | divided_by:100 %}{{ item.price | times:k }}{% endif %}</td>
         <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a>
         </td>
