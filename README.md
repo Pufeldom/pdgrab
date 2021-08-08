@@ -446,7 +446,9 @@ git push
 Примеры использование:
 ```bash
 python price.py 42
+python price.py 42%
 python price.py -42
+python price.py -42%
 python price.py 42 пуф
 python price.py 42 ^пуф
 python price.py 42 "^пуф сканд"
