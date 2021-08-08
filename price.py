@@ -10,7 +10,11 @@ PRICE_RE = r'(\nprice:\s+)(\d+)(\s*?\n)'
 NEGATE_CHAR = '^'
 
 args = sys.argv[1:]
-price_delta = int(args[0])
+is_percent = args[0].endswith('%')
+if is_percent:
+    price_delta = int(args[0][0:-1])
+else:
+    price_delta = int(args[0])
 try:
     title_search = args[1].lower().strip()
 except IndexError:
@@ -48,7 +52,10 @@ for entry in os.listdir(ITEMS_DIR):
             continue
 
     price = int(price)
-    new_price = price + price_delta
+    if is_percent:
+        new_price = int(round(price / 100 * (100 + price_delta), -1))
+    else:
+        new_price = price + price_delta
     file_content = re.sub(PRICE_RE, lambda m: m.group(1) + str(new_price) + m.group(3), file_content, 1)
 
     with io.open(file_path, 'w', encoding='utf8', newline='') as f:
