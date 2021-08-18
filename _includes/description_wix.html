@@ -8,4 +8,5 @@ if item.width %}Ширина: {{ item.width }} см
 {% endif %}{% if item.foam %}Толщина поролона: {{ item.foam }} см
 {% endif %}{% if item.weight %}Вес: {{ item.weight }} кг
 {% endif %}{% if item.content %}
-{{ item.content }}{% endif %}
+{{ item.content }}{% endif %}{% if item.video %}
+<br><br><a href="{{ item.video }}" target="_blank">Видеообзор</a>{% endif %}
