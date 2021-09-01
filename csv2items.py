@@ -85,7 +85,7 @@ discount: {discount}
 section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
 barcode: 
-articlewb:
+articlewb: 
 cover: нет
 width: {row['Ширина, см']}
 depth: {row['Глубина, см']}
