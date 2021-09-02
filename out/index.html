@@ -42,7 +42,7 @@
 
 <table>
 {% assign items = site.items | sort:"title" %}{% for item in items %}{% if item.active %}
-    <tbody>
+    <thead>
         <tr>
             <th>Код</th>
             <th>Товар</th>
@@ -52,6 +52,7 @@
             <th>Фото</th>
             <th>Остаток</th>
         </tr>
+    </thead>
         <tr>
             <td>{{ item.slug }}</td>
             <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
@@ -63,7 +64,6 @@
             </td>
             <td>{{ item.stock }}</td>
         </tr>
-    <tbody>
 {% endif %}{% endfor %}
 </table>
 
