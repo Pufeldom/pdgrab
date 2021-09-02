@@ -42,26 +42,28 @@
 
 <table>
 {% assign items = site.items | sort:"title" %}{% for item in items %}{% if item.active %}
-    <tr>
-        <th>Код</th>
-        <th>Товар</th>
-        <th>Цена</th>
-        <th>Скидка</th>
-        <th>Цена со скидкой</th>
-        <th>Фото</th>
-        <th>Остаток</th>
-    </tr>
-    <tr>
-        <td>{{ item.slug }}</td>
-        <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
-        <td>{{ item.price }}</td>
-        <td>{{ item.discount }}</td>
-        <td>{% if item.discount %}{% assign k = 100 | minus:item.discount | divided_by:100.0 %}{{ item.price | times:k }}{% endif %}</td>
-        <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
+    <tbody>
+        <tr>
+            <th>Код</th>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Скидка</th>
+            <th>Цена со скидкой</th>
+            <th>Фото</th>
+            <th>Остаток</th>
+        </tr>
+        <tr>
+            <td>{{ item.slug }}</td>
+            <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.discount }}</td>
+            <td>{% if item.discount %}{% assign k = 100 | minus:item.discount | divided_by:100.0 %}{{ item.price | times:k }}{% endif %}</td>
+            <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a>
-        </td>
-        <td>{{ item.stock }}</td>
-    </tr>
+            </td>
+            <td>{{ item.stock }}</td>
+        </tr>
+    <tbody>
 {% endif %}{% endfor %}
 </table>
 
