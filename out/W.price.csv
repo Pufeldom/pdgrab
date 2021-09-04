@@ -110,8 +110,8 @@
 
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wildberries'
-    articlewildberries=         {% if item.articlewildberries %}{% endif %}
+    articlewildberries=         {% if item.articlewildberries %}{% endif%}
     price=                      item.price
     discount=                   item.discount
     
-%}{% endfor %}
+{% endfor %}
