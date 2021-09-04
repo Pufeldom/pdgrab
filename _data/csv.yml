@@ -112,6 +112,6 @@ yandex:
 wildberries:
   delimiter: ';'
   cols:
-    Номенклатура (код 1С): articlewb
+    Номенклатура (код 1С): articlewildberries
     Новая розн. цена (до скидки): price
     Согласованная скидка, %: discount
