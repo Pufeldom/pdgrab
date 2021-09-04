@@ -52,7 +52,6 @@
                 <th>Цена со скидкой</th>
                 <th>Фото</th>
                 <th>Остаток</th>
-                <th>Артикул WB</th>
             </tr>
         </thead>
             <tr>
@@ -63,8 +62,7 @@
                 <td>{% if item.discount %}{% assign k = 100 | minus:item.discount | divided_by:100.0 %}{{ item.price | times:k }}{% endif %}</td>
                 <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
                 <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a></td>
-                <td>{{ item.stock }}</td>
-                <td>{{ item.articlewb }}</td>
+                <td>{% if item.stock=true %}{{ item.stock }}{% endif %}</td>
             </tr>
     </tbody>
 {% endif %}{% endfor %}
