@@ -65,7 +65,7 @@
             <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a></td>
             <td>{% if item.stock=true %}{{ item.stock }}{% endif %}</td>
-            <td>{{ item.articlewb }}{% endif %}</td>
+            <td>{{ item.articlewb }}</td>
         </tr>
     </tbody>
 {% endif %}{% endfor %}
