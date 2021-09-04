@@ -108,3 +108,10 @@ yandex:
     Фото: large_pic
     Популярный товар: is_popular
     В наличии: is_available
+
+wildberries:
+  delimiter: ';'
+  cols:
+    Номенклатура (код 1С): articlewb
+    Новая розн. цена (до скидки): price
+    Согласованная скидка, %: discount
