@@ -69,7 +69,8 @@ with open(src_file_path, newline='') as csvfile:
                         print(f'  WARNING: cannot get existing images data for {dest_file_path}')
                     try:
                         [(stock_str, youla_str)] = re.findall(
-                            r'\nstock:\s*([\S\s]*?)\nyoula:\s*([\S\s]*?)\n---',
+                            r'\nstock:\s*([\S\s]*?)\nwildberries: false
+youla:\s*([\S\s]*?)\n---',
                             dest_file_content,
                         )
                     except ValueError:
@@ -103,6 +104,7 @@ image: {image}
 gallery:{gallery_str or ' '}
 active: {'true' if (row['Активен'] == 'да') else 'false'}
 stock: {stock_str}
+wildberries: false
 youla: {youla_str}
 ---
 
