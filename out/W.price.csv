@@ -114,4 +114,4 @@
     price=                      item.price
     discount=                   item.discount
  
-{% endfor %}
+%}{% endfor %}
