@@ -112,7 +112,7 @@
 
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
-    price=                      item.price
+    price=                      <price>{{ item.price | times:1 | plus:site.data.wildberries.surcharge }}</price>
     discount=                   item.discount
  
 %}{% endfor %}
