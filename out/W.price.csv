@@ -109,7 +109,7 @@
     {% endfor %}}{% endif %}
 
 {% assign pricewb = item.price | times:1 | plus:site.data.wildberries.surcharge %}
-{% if item.wildberries == "True" %}{% assign quantity = 2 %}{%endif %}
+{% if item.wildberries == "True" %}{% assign quantity = 2 %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
@@ -117,5 +117,5 @@
     discount=                   item.discount
     barcode=                    item.barcode
     quantity=                   quantity
- 
+{%endif %}
 %}{% endfor %}
