@@ -110,7 +110,7 @@ yandex:
     В наличии: is_available
 
 wildberries:
-  delimiter: ';'
+  delimiter: ','
   cols:
     Номенклатура (код 1С): articlewildberries
     Новая розн. цена (до скидки): price
