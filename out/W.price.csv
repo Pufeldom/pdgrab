@@ -112,7 +112,7 @@
 
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
-    price=                      pricewb
+    price=                      item.price
     discount=                   item.discount
  
 %}{% endfor %}
