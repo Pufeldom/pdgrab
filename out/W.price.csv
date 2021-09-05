@@ -109,9 +109,12 @@
     {% endfor %}}{% endif %}
 
 {% endcapture %}{% assign devnull=nil %}
+
+{% assign pricewb = item.price | plus:500 %}
+
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
-    price=                      item.price
+    price=                      pricewb
     discount=                   item.discount
  
 %}{% endfor %}
