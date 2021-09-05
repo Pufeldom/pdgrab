@@ -108,9 +108,8 @@
         {% endcase %}
     {% endfor %}}{% endif %}
 
+{% assign pricewb = item.price | times:1 | plus:site.data.wildberries.surcharge %}
 {% endcapture %}{% assign devnull=nil %}
-
-{% assign pricewb= {% item.price | times:1 | plus:site.data.wildberries.surcharge %}
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
     price=                      pricewb
