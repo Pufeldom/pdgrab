@@ -114,5 +114,7 @@
     articlewildberries=         item.articlewildberries
     price=                      pricewb
     discount=                   item.discount
+    barcode=                    item.barcode
+    quantity=                   '1'
  
 %}{% endfor %}

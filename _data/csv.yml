@@ -115,3 +115,5 @@ wildberries:
     Номенклатура (код 1С): articlewildberries
     Новая розн. цена (до скидки): price
     Согласованная скидка, %: discount
+    Баркод: barcode
+    Количество: quantity
