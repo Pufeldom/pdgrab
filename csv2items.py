@@ -70,6 +70,7 @@ with open(src_file_path, newline='') as csvfile:
                     try:
                         [(stock_str, youla_str)] = re.findall(
                             r'\nstock:\s*([\S\s]*?)\nwildberries: false
+aliexpress: false
 youla:\s*([\S\s]*?)\n---',
                             dest_file_content,
                         )
@@ -87,6 +88,7 @@ section: {row['Раздел (уровень 3)']}
 color: {row['Цвет']}
 barcode: 
 articlewildberries: 
+articlealiexpress: 
 cover: нет
 width: {row['Ширина, см']}
 depth: {row['Глубина, см']}
@@ -105,6 +107,7 @@ gallery:{gallery_str or ' '}
 active: {'true' if (row['Активен'] == 'да') else 'false'}
 stock: {stock_str}
 wildberries: false
+aliexpress: false
 youla: {youla_str}
 ---
 
