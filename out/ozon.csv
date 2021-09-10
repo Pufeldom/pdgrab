@@ -26,7 +26,7 @@
     depth=                          item.depth
     housing_material=               'Фанера/ДСП/Картон'
     material=                       item.material
-    description=                    item.description
+    description=                    item.content
     danger_class=                   'Не опасен'
     color=                          item.color
     box=                            item.box
