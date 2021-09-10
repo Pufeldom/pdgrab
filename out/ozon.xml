@@ -5,10 +5,11 @@ permalink: /out/ozon.xml
     <shop>
         <offers>
 {% for item in site.items %}{% if item.youla and item.active and item.image %}
+    {% assign discount = item.discount | default:0 %}
             <offer id="{{ item.slug }}">
-                <price>{{ item.price }}</price>
-                <oldprice>0</oldprice>
-                <premium_price>0</premium_price>
+                <price>{% assign k = 100 | minus:item.discount | plus:3 | divided_by:100.0 %}{{ item.price | times:k | round }}</price>
+                <oldprice>{{ item.price }}</oldprice>
+                <premium_price>{% assign k = 100 | minus:item.discount | divided_by:100.0 %}{{ item.price | times:k | round }}</premium_price>
                 <outlets>
                     <outlet instock="0"></outlet>
                 </outlets>
