@@ -107,6 +107,7 @@ gallery:{gallery_str or ' '}
 active: {'true' if (row['Активен'] == 'да') else 'false'}
 stock: {stock_str}
 wildberries: false
+ozon: false
 aliexpress: false
 youla: {youla_str}
 ---
