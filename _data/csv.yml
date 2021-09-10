@@ -53,6 +53,7 @@ wix:
     customTextCharLimit2:
     customTextMandatory2:
     brand:
+    barcode:
 
 bitrix:
   delimiter: ';'
