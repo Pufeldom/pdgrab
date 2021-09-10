@@ -18,7 +18,7 @@
     width_brutto=                   width_brutto
     large_pic=                      item.image
     gallery=                        item.gallery
-    type=                           'Пуф'
+    item_type=                      'Пуф'
     brend=                          'Пуфельдом'
     model_name=                     item.slug
     height=                         item.height
