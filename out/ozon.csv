@@ -1,0 +1,42 @@
+---
+---
+{% include csv_header.html type="ozon" %}{% for item in site.items %}{% capture devnull %}
+
+    {% assign discounted_price1 = item.price | times:1 | minus:   plus:site.data.ozon.surcharge %}
+    {% assign depth_brutto = item.depth | times:10 %}
+    {% assign height_brutto = item.height | times:10 %}
+    {% assign width_brutto = item.width | times:10 %}
+    {% assign weight_gram = item.weight | times:1000 %}
+{% endcapture %}{% assign devnull=nil %}
+{% include csv_row.html type='ozon'
+    articleozon=        item.slug
+    title=              item.title
+    vat=                'Не облагается'
+    kommerce_type=      'Пуфы'
+    barcode=            item.barcode
+    depth_brutto=       depth_brutto
+    height_brutto=      height_brutto
+    width_brutto=       width_brutto
+    large_pic=          item.image
+    gallery=            item.gallery
+    type=               'Пуф'
+    brend=              'Пуфельдом'
+    model_name=         item.slug
+    height=             item.height
+    width=              item.width
+    depth=              item.depth
+    housing_material=   'Фанера/ДСП/Картон'
+    material=           item.material
+    description=        item.description
+    danger_class=       'Не опасен'
+    color=              item.color
+    box=                item.box
+    weight=             weight_gram
+    country=            'Россия'
+    color_name=         item.color
+    merger=             item.parent
+    multiplicity=       1
+
+
+
+%}{% endfor %

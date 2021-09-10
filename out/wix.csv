@@ -150,5 +150,4 @@
     customTextCharLimit2=       input2_limit
     customTextMandatory2=       input2_required
     brand=                      'Пуфельдом'
-    barcode=                    item.barcode
 %}{% endfor %}
