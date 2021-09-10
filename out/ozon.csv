@@ -7,7 +7,7 @@
     {% assign width_brutto = item.width | times:10 %}
     {% assign weight_gram = item.weight | times:1000 %}
 {% endcapture %}{% assign devnull=nil %}
-{% include csv_row.html type='ozon'
+{% if item.ozon == "true" %}{% include csv_row.html type='ozon'
     articleozon=                    item.slug
     title=                          item.title
     vat=                            'Не облагается'
@@ -36,4 +36,5 @@
     merger=                         item.parent
     multiplicity=                   1
 
+{%endif %}
 %}{% endfor %}
