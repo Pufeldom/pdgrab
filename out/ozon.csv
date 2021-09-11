@@ -15,7 +15,7 @@
     price=                      ''
     price_premium=              ''
     vat=                        'Не облагается'
-    ozon_id=
+    ozon_id=                    ''
     kommerce_type=              'Пуфы'
     barcode=                    item.barcode
     depth_brutto=               depth_brutto
@@ -23,8 +23,8 @@
     width_brutto=               width_brutto
     large_pic=                  item.image
     gallery=                    item.gallery
-    photo_360=
-    article_photo=
+    photo_360=                  ''
+    article_photo=              ''
     item_type=                  'Пуф'
     brend=                      'Пуфельдом'
     model_name=                 item.slug
