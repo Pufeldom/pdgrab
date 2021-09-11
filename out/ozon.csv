@@ -10,7 +10,8 @@
     {% assign discount_ozon = item.discount | minus:3 %}
     {% assign delta_price = item.price | times:{{discount_ozon}} | divided_by:100 %}
     {% assign discounted_price1 = item.price | minus:{{delta_price}} %}
-    {% assign discounted_price2 = item.price | minus:{{item.discount}} %}
+    {% assign delta_price2 = item.price | times:{{item.discount}} | divided_by:100 %}
+    {% assign discounted_price2 = item.price | minus:{{delta_price2}} %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='ozon'
     number=                     ''
