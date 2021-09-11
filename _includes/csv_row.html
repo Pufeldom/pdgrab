@@ -15,7 +15,8 @@
         {% assign value = include[col_key] %}
     {% endif %}
 
-    {% if value contains delimiter %}
+    {% if value contains delimiter or value contains '
+' %}
         {% assign first_char = value | slice:0 %}
         {% assign last_char = value | slice:-1 %}
         {% if first_char != '"' or last_char != '"' %}
