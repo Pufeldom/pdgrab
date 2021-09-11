@@ -35,5 +35,4 @@
     color_name=                 item.color
     merger=                     item.parent
     multiplicity=               1
-
 %}{% endfor %}
