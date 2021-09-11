@@ -7,7 +7,6 @@
     {% assign width_brutto = item.width | times:10 %}
     {% assign weight_gram = item.weight | times:1000 %}
 {% endcapture %}{% assign devnull=nil %}
-{%if item.ozon %}
 {% include csv_row.html type='ozon'
     articleozon=                item.slug
     title=                      item.title
@@ -36,6 +35,5 @@
     color_name=                 item.color
     merger=                     item.parent
     multiplicity=               1
-{% endif}
 
 %}{% endfor %}
