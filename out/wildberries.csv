@@ -1,6 +1,6 @@
 ---
 ---
-{% include csv_header.html type="wildberries" %}{% for item in site.items %}{% capture devnull %}
+{% include csv_header.html type="wildberries" %}{% for item in site.items %}{% if item.wildberries %}{% capture devnull %}
 
     {% assign pricewb = item.price | times:1 | plus:site.data.wildberries.surcharge %}
 {% if item.wildberries %}{% assign quantitywb = 2 %}{%endif %}
@@ -11,5 +11,5 @@
     discount=                   item.discount
     barcode=                    item.barcode
     quantity=                   quantitywb
+%}{% endif %}{% endfor %}
 
-%}{% endfor %}
