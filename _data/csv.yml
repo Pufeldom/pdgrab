@@ -121,7 +121,7 @@ wildberries:
 ozon:
   delimiter: ','
   cols:
-    №:
+    №: number
     Артикул*: articleozon
     Название товара: title
     Цена*, руб.:
