@@ -59,7 +59,4 @@
     multiplicity=               1
     mistake=
     warning=
-{% endif %}
-
-%}{% endfor %}
-
+%}{% endif %}{% endfor %}
