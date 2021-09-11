@@ -40,7 +40,7 @@
     height=                     item.height
     width=                      item.width
     depth=                      item.depth
-    housing_material=           'Фанера/ДСП/Картон'
+    housing_material=           'Фанера'
     material=                   item.material
     description=                item.content
     danger_class=               'Не опасен'
