@@ -33,7 +33,7 @@
     depth=                      item.depth
     housing_material=           'Фанера/ДСП/Картон'
     material=                   item.material
-    description=                item.content
+    description=                ''
     danger_class=               'Не опасен'
     JSON=                       ''
     color=                      item.color
