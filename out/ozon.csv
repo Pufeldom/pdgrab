@@ -7,6 +7,8 @@
     {% assign width_brutto = item.width | times:10 %}
     {% assign weight_gram = item.weight | times:1000 %}
     {% assign weight_gram_brutto = weight_gram | plus:700 %}
+    {% assign delta_price = item.price | times:{{item.discount}} | divided_by:100 %}
+    {% assign discounted_price1 = item.price | minus:{{delta_price}} %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='ozon'
     number=                     ''
