@@ -1,6 +1,7 @@
 ---
 ---
 {% include csv_header.html type="ozon" %}{% for item in site.items %}{% if item.ozon %}{% capture devnull %}
+    {% assign image = item.image | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign gallery = item.gallery | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign depth_brutto = item.depth | times:10 %}
     {% assign height_brutto = item.height | times:10 %}
@@ -29,7 +30,7 @@
     depth_brutto=               depth_brutto
     height_brutto=              height_brutto
     width_brutto=               width_brutto
-    large_pic=                  item.image
+    large_pic=                  image
     gallery=                    gallery
     photo_360=                  ''
     article_photo=              ''
