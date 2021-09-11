@@ -1,6 +1,6 @@
 ---
 ---
-{% include csv_header.html type="ozon" %}{% for item in site.items %}{% capture devnull %}
+{% include csv_header.html type="ozon" %}{% for item in site.items %}{% if item.ozon %}{% capture devnull %}
 
     {% assign depth_brutto = item.depth | times:10 %}
     {% assign height_brutto = item.height | times:10 %}
@@ -59,6 +59,7 @@
     multiplicity=               1
     mistake=
     warning=
-    
+{% endif}
+   
 %}{% endfor %}
 
