@@ -4,12 +4,18 @@ permalink: /out/ozon.xml
 <yml_catalog>
     <shop>
         <offers>
-{% for item in site.items %}{% if item.youla and item.active and item.image %}
-    {% assign discount = item.discount | default:0 %}
+{% for item in site.items %}{% if item.youla and item.active and item.image %}{% capture devnull %}
+    {% assign price_ozon = item.price | times:1 | plus:site.data.ozon.surcharge %}
+    {% assign discount_ozon = item.discount | minus:3 %}
+    {% assign delta_price1 = price_ozon | times:discount_ozon | divided_by:100 %}
+    {% assign discounted_price1 = price_ozon | minus:delta_price1 %}
+    {% assign delta_price2 = price_ozon | times:item.discount | divided_by:100 %}
+    {% assign discounted_price2 = price_ozon | minus:delta_price2 %}
+{% endcapture %}{% assign devnull = nil %}
             <offer id="{{ item.slug }}">
-                <price>{% assign k = 100 | minus:item.discount | plus:3 | divided_by:100.0 %}{{ item.price | times:k | round }}</price>
-                <oldprice>{{ item.price }}</oldprice>
-                <premium_price>{% assign k = 100 | minus:item.discount | divided_by:100.0 %}{{ item.price | times:k | round }}</premium_price>
+                <price>{{ discounted_price1 }}</price>
+                <oldprice>{{ price_ozon }}</oldprice>
+                <premium_price>{{ discounted_price2 }}</premium_price>
                 <outlets>
                     <outlet instock="0"></outlet>
                 </outlets>
