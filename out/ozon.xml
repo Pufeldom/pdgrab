@@ -4,18 +4,22 @@ permalink: /out/ozon.xml
 <yml_catalog>
     <shop>
         <offers>
-{% for item in site.items %}{% if item.youla and item.active and item.image %}{% capture devnull %}
-    {% assign price_ozon = item.price | times:1 | plus:site.data.ozon.surcharge %}
+{% for item in site.items %}{% if item.ozon and item.active and item.image %}{% capture devnull %}
+    {% assign price_ozon = item.price %}
     {% assign discount_ozon = item.discount | minus:5 %}
     {% assign delta_price1 = price_ozon | times:discount_ozon | divided_by:100 %}
     {% assign discounted_price1 = price_ozon | minus:delta_price1 %}
     {% assign delta_price2 = price_ozon | times:item.discount | divided_by:100 %}
     {% assign discounted_price2 = price_ozon | minus:delta_price2 %}
+    {% assign surcharge = discounted_price1 | times:site.data.ozon.fee | divided_by:100 | plus:discounted_price1 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods %}
+    {% assign price_ozon_surcharged = price_ozon | plus:surcharge %}
+    {% assign discounted_price_surcharged1 = discounted_price1 | plus:surcharge %}
+    {% assign discounted_price_surcharged2 = discounted_price2 | plus:surcharge %}
 {% endcapture %}{% assign devnull = nil %}
             <offer id="{{ item.slug }}">
-                <price>{{ discounted_price1 }}</price>
-                <oldprice>{{ price_ozon }}</oldprice>
-                <premium_price>{{ discounted_price2 }}</premium_price>
+                <price>{{ discounted_price_surcharged1 }}</price>
+                <oldprice>{{ price_ozon_surcharged }}</oldprice>
+                <premium_price>{{ discounted_price_surcharged2 }}</premium_price>
                 <outlets>
                     <outlet instock="0"></outlet>
                 </outlets>

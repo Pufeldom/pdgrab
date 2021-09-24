@@ -1,1 +1,5 @@
-surcharge: 500
+fee: 8
+processing: 45
+highway: 255
+the_last_mile: 200
+return_of_goods: 17
