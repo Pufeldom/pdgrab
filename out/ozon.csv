@@ -10,9 +10,9 @@
     {% assign weight_gram_brutto = weight_gram | plus:700 %}
     {% assign price_ozon = item.price %}
     {% assign discount_ozon = item.discount | minus:5 %}
-    {% assign delta_price1 = price_ozon | times:discount_ozon | divided_by:100 %}
+    {% assign delta_price1 = price_ozon | times:discount_ozon | divided_by:100.0 %}
     {% assign discounted_price1 = price_ozon | minus:delta_price1 %}
-    {% assign delta_price2 = price_ozon | times:item.discount | divided_by:100 %}
+    {% assign delta_price2 = price_ozon | times:item.discount | divided_by:100.0 %}
     {% assign discounted_price2 = price_ozon | minus:delta_price2 %}
     {% assign surcharge = discounted_price1 | times:site.data.ozon.fee | divided_by:100.0 | plus:discounted_price1 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods %}
     {% assign price_ozon_surcharged = price_ozon | plus:surcharge %}
