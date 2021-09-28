@@ -11,10 +11,10 @@
 
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='yandex'
-    section=        'Пуфы, банкетки, диваны'
+    section=        'Пуфы'
     title=          title
     description=    description
-    price=          item.price
+    price=          item.discounted_price
     large_pic=      item.image
     is_popular=     is_popular
     is_available=   is_active
