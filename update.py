@@ -9,7 +9,7 @@ FM_IDX = 1
 
 # Preset params
 usage_example = 'Usage: python update.py CSV_FILE_NAME.csv "ID column" param1 param2 (...)'
-csv_delim = ';'
+csv_delim = ','
 dest_dir = '_items/'
 dest_file_ext = '.html'
 
