@@ -1,1 +1,7 @@
-surcharge: 500
+packaging: 90
+delivery: 100
+fee: 5
+processing: 
+highway: 135
+the_last_mile: 
+return_of_goods: 30

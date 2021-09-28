@@ -1,13 +1,16 @@
 ---
 ---
 {% include csv_header.html type="wildberries" %}{% for item in site.items %}{% if item.wildberries %}{% capture devnull %}
-
-    {% assign pricewb = item.price | times:1 | plus:site.data.wildberries.surcharge %}
-{% if item.wildberries %}{% assign quantitywb = 2 %}{%endif %}
+    {% assign surcharge = item.price | times:site.data.wildberries.fee | divided_by:100.0 | plus:site.data.wildberries.processing | plus:site.data.wildberries.highway | plus:site.data.wildberries.the_last_mile | plus:site.data.wildberries.return_of_goods | plus:site.data.wildberries.packaging | plus:site.data.wildberries.delivery %}
+    {% assign discounted_price = item.price | plus:surcharge %}
+    {% assign ratio = discount | devived_by:100.0 %}
+    {% assign divisor = 1 | minus:ratio %}
+    {% assign old_price = discounted_price | devived_by:divisor %}
+    {% if item.wildberries %}{% assign quantitywb = 2 %}{%endif %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wildberries'
     articlewildberries=         item.articlewildberries
-    price=                      pricewb
+    price=                      old_price
     discount=                   item.discount
     barcode=                    item.barcode
     quantity=                   quantitywb

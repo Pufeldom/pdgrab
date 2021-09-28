@@ -14,7 +14,7 @@
     {% assign discounted_price1 = price_ozon | minus:delta_price1 %}
     {% assign delta_price2 = price_ozon | times:item.discount | divided_by:100.0 %}
     {% assign discounted_price2 = price_ozon | minus:delta_price2 %}
-    {% assign surcharge = discounted_price1 | times:site.data.ozon.fee | divided_by:100.0 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods %}
+    {% assign surcharge = discounted_price1 | times:site.data.ozon.fee | divided_by:100.0 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods | plus:site.data.ozon.packaging | plus:site.data.ozon.delivery %}
     {% assign price_ozon_surcharged = price_ozon | plus:surcharge %}
     {% assign discounted_price_surcharged1 = discounted_price1 | plus:surcharge %}
     {% assign discounted_price_surcharged2 = discounted_price2 | plus:surcharge %}
