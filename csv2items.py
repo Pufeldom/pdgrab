@@ -69,7 +69,8 @@ with open(src_file_path, newline='') as csvfile:
                         print(f'  WARNING: cannot get existing images data for {dest_file_path}')
                     try:
                         [(stock_str, youla_str)] = re.findall(
-                            r'\nstock:\s*([\S\s]*?)\nwildberries: false
+                            r'\nstock:\s*([\S\s]*?)\n
+wildberries: false
 aliexpress: false
 youla:\s*([\S\s]*?)\n---',
                             dest_file_content,
