@@ -109,6 +109,9 @@
     {% endfor %}}{% endif %}
 
 {% endcapture %}{% assign devnull=nil %}
+    {% assign ratio = item.discount | devived_by:100.0 %}
+    {% assign divisor = 1 | minus:ratio %}
+    {% assign old_price = item.discounted_price | devived_by:divisor %}
 {% include csv_row.html type='wix'
     handleId=                   item.slug
     title=                      title
@@ -119,7 +122,7 @@
     collection=                 collection
     sku=                        item.slug
     ribbon=                     ribbon
-    price=                      item.price
+    price=                      old_price
     visible=                    is_active
     discountMode=               'PERCENT'
     discountValue=              discount
