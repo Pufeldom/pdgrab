@@ -107,11 +107,12 @@
             {% else %}{% break %}
         {% endcase %}
     {% endfor %}}{% endif %}
-
-{% endcapture %}{% assign devnull=nil %}
+    
     {% assign ratio = item.discount | devived_by:100.0 %}
     {% assign divisor = 1 | minus:ratio %}
     {% assign old_price = item.discounted_price | devived_by:divisor %}
+{% endcapture %}{% assign devnull=nil %}
+
 {% include csv_row.html type='wix'
     handleId=                   item.slug
     title=                      title
