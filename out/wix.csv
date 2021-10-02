@@ -122,7 +122,7 @@
     collection=                 collection
     sku=                        item.slug
     ribbon=                     ribbon
-    price=                      old_price
+    price=                      item.price
     visible=                    is_active
     discountMode=               'PERCENT'
     discountValue=              discount
