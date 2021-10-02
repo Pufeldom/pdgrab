@@ -5,7 +5,7 @@
     {% assign discounted_price = item.price | plus:surcharge %}
     {% assign ratio = discount | devived_by:100.0 %}
     {% assign divisor = 1 | minus:ratio %}
-    {% assign old_price = discounted_price | devived_by:divisor %}
+    {% assign old_price = discounted_price | devived_by:divisor | round:-2 %}
     {% if item.wildberries %}{% assign quantitywb = 2 %}{%endif %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wildberries'
