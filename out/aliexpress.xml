@@ -10,7 +10,7 @@ permalink: /out/aliexpress.xml
         </categories>
         <offers>
         <!-- Товары -->
-        {% for item in site.items %}{% if item.active and item.weight and item.image %}{% capture category %}{% include category.html title=item.title searched=site.data.aliexpress.title_to_category %}{% endcapture %}{% if site.data.aliexpress.categories[category] %}
+        {% for item in site.items %}{% if item.active and item.weight and item.image and item.aliexpress %}{% capture category %}{% include category.html title=item.title searched=site.data.aliexpress.title_to_category %}{% endcapture %}{% if site.data.aliexpress.categories[category] %}
             <offer id="{{ item.slug }}" group_id="{{ item.slug }}gr">
                 <!-- Информация о товаре -->{% capture devnull %}
 
