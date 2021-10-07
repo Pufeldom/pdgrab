@@ -55,7 +55,7 @@
             <th>Остаток</th>
         </tr>
     </thead>
-{% assign items = site.items | sort:"title" %}{% for item in items %}{% if item.active %}
+{% assign items = site.items | sort:"slug" %}{% for item in items %}{% if item.active %}
     <tbody>
         <tr>
             <td>{{ item.slug }}</td>
