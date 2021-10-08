@@ -57,7 +57,7 @@
     </thead>
 {% assign items = site.items | sort:"slug" | reverse %}{% for item in items %}{% if item.active %}
 {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
-{% assign discounted_price = item.price | times:ratio %}
+{% assign discounted_price = item.price | times:ratio | round:0 %}
     <tbody>
         <tr>
             <td>{{ item.slug }}</td>
