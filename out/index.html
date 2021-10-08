@@ -61,6 +61,16 @@
 {% assign items = site.items | sort:"slug" | reverse %}{% for item in items %}{% if item.active %}
 {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
 {% assign discounted_price = item.price | times:ratio | round:0 %}
+{% assign surcharge_ozon = item.price | times:site.data.ozon.fee | divided_by:100.0 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods | plus:site.data.ozon.packaging | plus:site.data.ozon.delivery %}
+{% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
+{% assign old_price_ozon = surcharge_ozon | devived_by:ratio | plus:item.price | round:0%}
+{% assign discounted_price_ozon1 = old_price_ozon | times:ratio | round:0 %}
+{% assign discounted_price_ozon2 = discounted_price_ozon1 | times:0.95 | round:0 %}
+{% assign surcharge_wildberries = item.price | times:site.data.wildberries.fee | divided_by:100.0 | plus:site.data.wildberries.processing | plus:site.data.wildberries.highway | plus:site.data.wildberries.the_last_mile | plus:site.data.wildberries.return_of_goods | plus:site.data.wildberries.packaging | plus:site.data.wildberries.delivery %}
+{% assign old_price_wildberries = surcharge_wildberries | devived_by:ratio | plus:item.price %}
+{% assign discounted_price_wildberries = old_price_wildberries | times:ratio | round:0 %}
+{% assign discount_abs = item.price | times:item.discount | divided_by:100 %}
+{% assign price_discount = item.price | minus:discount_abs | plus:site.data.aliexpress.surcharge %}
     <tbody>
         <tr>
             <td>{{ item.slug }}</td>
@@ -71,9 +81,9 @@
             <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a></td>
             <td>{% if item.stock %}{{ item.stock }}{% endif %}</td>
-            <td>{% if item.wildberries %}{{ item.wildberries }}{% endif %}</td>
-            <td>{% if item.ozon %}{{ item.ozon }}{% endif %}</td>
-            <td>{% if item.aliexpress %}{{ item.aliexpress }}{% endif %}</td>
+            <td>{% if item.wildberries %}{{ discounted_price_wildberries }}{% endif %}</td>
+            <td>{% if item.ozon %}{{ discounted_price_ozon1 }}{% endif %}</td>
+            <td>{% if item.aliexpress %}{{ price_discount }}{% endif %}</td>
         </tr>
     </tbody>
 {% endif %}{% endfor %}
