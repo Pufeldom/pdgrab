@@ -56,13 +56,15 @@
         </tr>
     </thead>
 {% assign items = site.items | sort:"slug" | reverse %}{% for item in items %}{% if item.active %}
+{% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
+{% assign discounted_price = item.price | times:ratio %}
     <tbody>
         <tr>
             <td>{{ item.slug }}</td>
             <td><a href="https://github.com/Pufeldom/pdgrab/edit/master/{{ item.path }}" target="_blank">{{ item.title }}</a></td>
             <td>{{ item.price }}</td>
             <td>{{ item.discount }}</td>
-            <td>{{ item.discounted_price }}</td>
+            <td>{{ discounted_price }}</td>
             <td {% if item.gallery %} data-gallery-count="{{ item.gallery | size }}"{% endif %}>
             <a href="{% include url.html item=item %}" target="_blank"><img src="{{ item.image }}"></a></td>
             <td>{% if item.stock %}{{ item.stock }}{% endif %}</td>
