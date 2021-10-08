@@ -5,20 +5,16 @@ permalink: /out/ozon.xml
     <shop>
         <offers>
 {% for item in site.items %}{% if item.ozon and item.active and item.image %}{% capture devnull %}
-    {% assign discount_ozon = item.discount | minus:5 %}
-    {% assign delta_price1 = item.price | times:discount_ozon | divided_by:100.0 %}
-    {% assign discounted_price1 = item.price | minus:delta_price1 %}
-    {% assign delta_price2 = item.price | times:item.discount | divided_by:100.0 %}
-    {% assign discounted_price2 = item.price | minus:delta_price2 %}
-    {% assign surcharge = discounted_price1 | times:site.data.ozon.fee | divided_by:100.0 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods | plus:site.data.ozon.packaging | plus:site.data.ozon.delivery %}
-    {% assign price_ozon_surcharged = item.price | plus:surcharge | round:0 %}
-    {% assign discounted_price_surcharged1 = discounted_price1 | plus:surcharge | round:0 %}
-    {% assign discounted_price_surcharged2 = discounted_price2 | plus:surcharge | round:0 %}
+    {% assign surcharge = item.price | times:site.data.wildberries.fee | divided_by:100.0 | plus:site.data.wildberries.processing | plus:site.data.wildberries.highway | plus:site.data.wildberries.the_last_mile | plus:site.data.wildberries.return_of_goods | plus:site.data.wildberries.packaging | plus:site.data.wildberries.delivery %}
+    {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
+    {% assign old_price_ozon = surcharge | devived_by:ratio | plus:item.price | round:0 %}
+    {% assign discounted_price1 = old_price | times:ratio | round:0 %}
+    {% assign discounted_price2 = discounted_price1 | times:0.95 | round:0 %}
 {% endcapture %}{% assign devnull = nil %}
             <offer id="{{ item.slug }}">
-                <price>{{ discounted_price_surcharged1 }}</price>
-                <oldprice>{{ price_ozon_surcharged }}</oldprice>
-                <premium_price>{{ discounted_price_surcharged2 }}</premium_price>
+                <price>{{ discounted_price1 }}</price>
+                <oldprice>{{ old_price_ozon }}</oldprice>
+                <premium_price>{{ discounted_price2 }}</premium_price>
                 <outlets>
                     <outlet instock="0"></outlet>
                 </outlets>

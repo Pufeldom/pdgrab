@@ -8,13 +8,16 @@
 
     {% capture description %}{% include description.html item=item %}{% endcapture %}
     {% capture description %}{% include text.html text=description %}{% endcapture %}
-
+    {% assign surcharge = item.price | times:site.data.wildberries.fee | divided_by:100.0 | plus:site.data.wildberries.processing | plus:site.data.wildberries.highway | plus:site.data.wildberries.the_last_mile | plus:site.data.wildberries.return_of_goods | plus:site.data.wildberries.packaging | plus:site.data.wildberries.delivery %}
+    {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
+    {% assign old_price = surcharge | devived_by:ratio | plus:item.price %}
+    {% assign discounted_price = old_price | times:ratio %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='yandex'
     section=        'Пуфы'
     title=          title
     description=    description
-    price=          item.discounted_price
+    price=          discounted_price
     large_pic=      item.image
     is_popular=     is_popular
     is_available=   is_active
