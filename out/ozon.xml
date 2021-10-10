@@ -16,7 +16,7 @@ permalink: /out/ozon.xml
                 <oldprice>{{ old_price_ozon }}</oldprice>
                 <premium_price>{{ discounted_price_ozon2 }}</premium_price>
                 <outlets>
-                    <outlet instock="0"></outlet>
+                    <outlet instock="1"></outlet>
                 </outlets>
             </offer>
 {% endif %}{% endfor %}
