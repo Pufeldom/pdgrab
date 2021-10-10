@@ -40,9 +40,6 @@
     width=                      item.width
     depth=                      item.depth
     housing_material=           'Фанера'
-    seat_height=                item.height
-    seat_width=                 item.width
-    seat_depth=                 item.depth
     material=                   item.material
     description=                item.content
     danger_class=               'Не опасен'
@@ -56,6 +53,9 @@
     construct=                  ''    
     print=                      ''
     housing_coating=            ''
+    seat_height=                item.height
+    seat_width=                 item.width
+    seat_depth=                 item.depth
     style=                      ''
     design=                     ''
     appointment=                'Для дома'
