@@ -2,8 +2,8 @@
 ---
 {% include csv_header.html type="wildberries" %}{% for item in site.items %}{% if item.wildberries %}{% capture devnull %}
     {% assign surcharge_wildberries = item.price | times:site.data.wildberries.fee | divided_by:100.0 | plus:site.data.wildberries.processing | plus:site.data.wildberries.highway | plus:site.data.wildberries.the_last_mile | plus:site.data.wildberries.return_of_goods | plus:site.data.wildberries.packaging | plus:site.data.wildberries.delivery %}
-    {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
-    {% assign old_price_wildberries = surcharge_wildberries | devived_by:ratio | plus:item.price %}
+    {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 | round:0 %}
+    {% assign old_price_wildberries = surcharge_wildberries | devived_by:ratio | plus:item.price | round:0 %}
     {% if item.wildberries %}{% assign quantitywb = 4 %}{%endif %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='wildberries'
