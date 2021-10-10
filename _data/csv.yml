@@ -159,10 +159,12 @@ ozon:
     Конструктивные особенности: construct
     Рисунок на обивке: print
     Покрытие корпуса: housing_coating
+    Высота сиденья, см: seat_height
+    Ширина сиденья, см: seat_width
+    Глубина сиденья, см: seat_depth
     Стиль дизайна: style
     Исполнение: design
     Назначение: appointment
-    Комната: room
     Вес товара, г: weight
     Страна-изготовитель: country
     Гарантия: warranty
