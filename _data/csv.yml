@@ -124,7 +124,7 @@ ozon:
     №: number
     Артикул*: articleozon
     Название товара: title
-    Цена*, руб.: discounted_price
+    Цена, руб.*: discounted_price
     Цена до скидки, руб.: price
     Цена с Ozon Premium, руб.: price_premium
     НДС, %*: vat
