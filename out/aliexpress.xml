@@ -38,8 +38,8 @@ permalink: /out/aliexpress.xml
                     {% endunless %}
 
                     {% if item.discount %}
-                        {% assign discount_abs = item.price | times:item.discount | divided_by:100 %}
-                        {% assign price_discount = item.price | minus:discount_abs | plus:site.data.aliexpress.surcharge %}
+                        {% assign discount_abs = item.price | times:item.discount | divided_by:100 | round:0 %}
+                        {% assign price_discount = item.price | minus:discount_abs | plus:site.data.aliexpress.surcharge | round:0 %}
                     {% else %}
                         {% assign price_discount = nil %}
                     {% endif %}
