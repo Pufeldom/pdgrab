@@ -11,5 +11,6 @@ if item.width %}Ширина: {{ item.width }} см
 {{ item.content }}{% endif %}{% if item.video %}
 <br><br>Видеообзор: <a href="{{ item.video }}" target="_blank">тут</a>{% endif %}
 {% if item.wildberries %}
-
+<br><br>Купить на Wildberries: <a href="https://www.wildberries.ru/catalog/{{ item.articlewildberries }}/detail.aspx?targetUrl=XS" target="_blank">тут</a>{% endif %}
+{% if item.aliexpress %}
 <br><br>Купить на Aliexpress: <a href="https://aliexpress.ru/item/{{ item.articlealiexpress }}.html?spm=a2g0o.products_list.0.0.43e92304BNEFRV&_ga=2.32027006.1575608937.1630817399-1909591527.1629101516" target="_blank">тут</a>{% endif %}
