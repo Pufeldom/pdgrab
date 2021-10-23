@@ -11,7 +11,7 @@
     yandex_sku=                 item.slug
     yandex_title=               item.title
     link_to_the_picture=        item.image
-    yandex_description=         description
+    yandex_description=         ''
     category=                   'Пуфы и банкетки'
     brend=                      'Пуфельдом'
     barcode=                    item.barcode
@@ -19,7 +19,7 @@
     gross_weight=               item.weight
     country=                    'Россия'
     article=                    item.slug
-    warranty_period=            1 год  
+    warranty_period=            '1 год'
     yandex_price=               price_yandex
     old_yandex_price=           old_price_yandexmarket
     vat=                        'NO_VAT'
