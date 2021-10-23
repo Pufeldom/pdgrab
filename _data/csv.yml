@@ -175,7 +175,7 @@ ozon:
     Количество заводских упаковок: multiplicity
     Ошибка: mistake
     Предупреждение: warning
-    
+
 yandex_market:
   delimiter: ','
   cols:
