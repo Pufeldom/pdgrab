@@ -176,7 +176,7 @@ ozon:
     Ошибка: mistake
     Предупреждение: warning
 
-yandex_market:
+yandexmarket:
   delimiter: ','
   cols:
     Комментарий: 
