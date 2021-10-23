@@ -12,7 +12,7 @@
     yandex_title=               item.title
     link_to_the_picture=        item.image
     yandex_description=         item.content
-    category=                   'Пуфы и банкетки'
+    category=                   'Пуфы'
     brend=                      'Пуфельдом'
     barcode=                    item.barcode
     dimensions=                 '40/40/42'
