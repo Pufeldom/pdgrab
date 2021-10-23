@@ -19,6 +19,8 @@
     gross_weight=               item.weight
     country=                    'Россия'
     article=                    item.slug
+    expiration_date=            '5 лет'
+    service_life=               '5 лет'
     warranty_period=            '1 год'
     yandex_price=               price_yandex
     old_yandex_price=           old_price_yandexmarket
