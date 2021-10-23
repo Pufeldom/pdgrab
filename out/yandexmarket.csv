@@ -4,7 +4,7 @@
     {% assign surcharge_yandexmarket = item.price | times:site.data.yandexmarket.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
     {% assign old_price_yandexmarket = item.price | plus:surcharge_yandexmarket | round:0 %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
-    {% assign price_yandex = old_price_yandexmarket | times:ratio %}
+    {% assign price_yandex = old_price_yandexmarket | times:ratio | round:0  %}
     {% if item.stock %}{% assign quantityyandex = 1 %}{% else %}{% assign quantityyandex = 0 %}{%endif %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='yandexmarket'
