@@ -2,6 +2,8 @@
 ---
 {% include csv_header.html type="yandexmarket" %}{% for item in site.items %}{% if item.active %}{% capture devnull %}
 {% endcapture %}{% assign devnull=nil %}
+{% capture description %}{% include description_yandexmarket.html item=item %}{% endcapture %}
+{% capture description %}{% include text.html text=description %}{% endcapture %}
     {% assign surcharge_yandexmarket = item.price | times:site.data.yandexmarket.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 | round:0 %}
     {% assign old_price_yandexmarket = surcharge_yandexmarket | devived_by:ratio | plus:item.price | round:0 %}
