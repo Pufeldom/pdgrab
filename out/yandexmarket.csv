@@ -3,8 +3,9 @@
 {% include csv_header.html type="yandexmarket" %}{% for item in site.items %}{% if item.active %}{% capture devnull %}
     {% assign surcharge_yandexmarket = item.price | times:site.data.yandexmarket.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 | round:0 %}
-    {% assign old_price_yandexmarket = surcharge_yandexmarket | devived_by:ratio | plus:item.price | round:0 %}
-    {% assign price_yandex = item.price | plus:surcharge_yandexmarket %}
+    {% assign old_price_yandexmarket = item.price | plus:surcharge_yandexmarket | round:0 %}
+    {% assign discount_rub = old_price_yandexmarket | times:item.discount | devived_by:100 %}
+    {% assign price_yandex = old_price_yandexmarket | minus:discount_rub %}
     {% if item.stock %}{% assign quantityyandex = 1 %}{% else %}{% assign quantityyandex = 0 %}{%endif %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='yandexmarket'
