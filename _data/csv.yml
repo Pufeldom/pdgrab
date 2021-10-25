@@ -148,7 +148,6 @@ ozon:
     Материал корпуса*: housing_material
     Материал обивки*: material
     Аннотация: description
-    Класс опасности товара: danger_class
     Rich-контент JSON: JSON
     Цвет товара: color
     Дополнительно: else
@@ -173,6 +172,7 @@ ozon:
     Серии: batch
     Объединить на одной карточке: merger
     Количество заводских упаковок: multiplicity
+    Класс опасности товара: danger_class
     Ошибка: mistake
     Предупреждение: warning
 
