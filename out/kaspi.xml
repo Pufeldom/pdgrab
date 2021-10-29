@@ -13,12 +13,12 @@ permalink: /out/kaspi.xml
    <company>ИП Литвинцев Дмитрий Анатольевич</company>
     <merchantid>Pufeldom</merchantid>
     <offers>
-        <offer sku=item.slug>
+        <offer sku>item.slug></offer sku>
             <model>item.title</model>
             <brand>Пуфельдом</brand>
             <availabilities>
                 <availability available="yes" storeId=item.image/>
             </availabilities>
             <price>price_kaspi</price>
-        </offers>
+    </offers>    
 </kaspi_catalog>
