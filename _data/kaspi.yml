@@ -5,3 +5,7 @@ processing:
 highway: 2199
 the_last_mile: 
 return_of_goods: 
+categories:
+  Пуфы: pufi
+title_to_category:
+  пуф: Пуфы
