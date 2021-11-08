@@ -10,7 +10,7 @@ permalink: /out/kaspi.xml
               xmlns="kaspiShopping"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="kaspiShopping http://kaspi.kz/kaspishopping.xsd">
-   <company>ИП Литвинцев Дмитрий Анатольевич</company>
+   <company>Пуфельдом</company>
     <merchantid>Pufeldom</merchantid>
     <offers>
     <!-- Товары -->
@@ -18,7 +18,7 @@ permalink: /out/kaspi.xml
             <model>item.title</model>
             <brand>Пуфельдом</brand>
             <availabilities>
-                <availability available="yes" storeId=item.image/>
+                <availability available="yes" storeId="PP1"/>
             </availabilities>
             <price>price_kaspi</price>
     </offers>    
