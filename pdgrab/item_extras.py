@@ -27,7 +27,7 @@ def _read_materials():
 
         # Read and parse file content
         print(f'- read {file_path}')
-        fh = open(file_path)
+        fh = open(file_path, encoding='utf-8')
         file_data = _read_jekyll_data(fh)
 
         # Create materials item
