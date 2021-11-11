@@ -1,6 +1,6 @@
 ---
 ---
-{% include csv_header.html type="yandexmarket" %}{% for item in site.items %}{% if item.active and item.barcode %}{% capture devnull %}
+{% include csv_header.html type="yandexmarket" %}{% for item in site.items %}{% if item.active and item.stock %}{% capture devnull %}
     {% assign surcharge_yandexmarket = item.price | times:site.data.yandexmarket.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
     {% assign old_price_yandexmarket = item.price | plus:surcharge_yandexmarket | round:0 %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
