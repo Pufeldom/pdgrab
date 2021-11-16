@@ -148,8 +148,8 @@ ozon:
     Материал корпуса*: housing_material
     Материал обивки*: material
     Аннотация: description
-    Цвет товара: color
     Rich-контент JSON: JSON
+    Цвет товара: color
     Дополнительно: else
     Форма поставки: delivery_form
     Материал наполнителя: material2
