@@ -1,14 +1,16 @@
 {% capture devnull %}
     {% assign item = include.item %}
-{% endcapture %}{% assign devnull=nil %}{%
-if item.width %}Ширина: {{ item.width }} см
+{% endcapture %}{% assign devnull=nil %}
+{%if item.width %}Ширина: {{ item.width }} см
 {% endif %}{% if item.depth %}Глубина: {{ item.depth }} см
 {% endif %}{% if item.height %}Высота: {{ item.height }} см
 {% endif %}{% if item.legs_color %}Цвет ножек: {{ item.legs_color | downcase }}
 {% endif %}{% if item.foam %}Толщина поролона: {{ item.foam }} см
 {% endif %}{% if item.weight %}Вес: {{ item.weight }} кг
 {% endif %}{% if item.content %}
-{{ item.content }}{% endif %}{% if item.video %}
+{{ item.content }}{% endif %}
+{% if item.stock %}Товар в наличии {% else %}Срок изготовления от 1 рабочих дня. Уточняйте у оператора {% endif %}
+{% if item.video %}
 <br><br>Видеообзор: <a href="{{ item.video }}" target="_blank">тут</a>{% endif %}
 {% if item.wildberries %}
 <br><br>Купить на Wildberries: <a href="https://www.wildberries.ru/catalog/{{ item.articlewildberries }}/detail.aspx?targetUrl=XS" target="_blank">тут</a>{% endif %}
