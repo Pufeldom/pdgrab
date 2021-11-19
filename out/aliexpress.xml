@@ -73,7 +73,7 @@ permalink: /out/aliexpress.xml
                 {% endif %}{% if item.width %}<length>{{ item.width }}</length>
                 {% endif %}{% if item.depth %}<width>{{ item.depth }}</width>
                 {% endif %}{% if item.height %}<height>{{ item.height }}</height>
-                {% endif %}<quantity>5</quantity>
+                {% endif %}<quantity>3</quantity>
                 <param name="Размеры, см">{{ item.width }}×{{ item.depth }}×{{ item.height }}</param>
             </offer>
             {% endif %}{% endif %}{% endfor %}
