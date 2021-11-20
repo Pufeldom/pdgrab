@@ -478,7 +478,7 @@ python price.py 42 "^пуф сканд"
 
 Примеры использования:
 ```bash
-python update.py report_2021_8_31.csv "Наш ID" articlewildberries Barcode
+python update.py report_2021_8_31.csv "Наш ID" articlewildberries articlewildberries
 ```
 
 Перед/после использования понадобится применение редактора и/или [консольных команд git](#команды-git) для просмотра
