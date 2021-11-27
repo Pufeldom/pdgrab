@@ -11,6 +11,8 @@ permalink: /out/yandex.xml
         {% endif %}
     {% endcapture %}{% assign devnull = nil %}{% if category %}
         <offer>
+        {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
+        {% assign price_yandex = item.price | times:ratio | round:0  %}
             <id>{{ item.slug }}</id>
             <seller>
                 <contacts>
@@ -31,7 +33,7 @@ permalink: /out/yandex.xml
                 <image>{{ item.image }}</image>{% if item.gallery %}{% for pic_url in item.gallery %}{% if pic_url != item.image %}
                 <image>{{ pic_url }}</image>{% endif %}{% endfor %}{% endif %}
             </images>
-            <price>{{ item.price }}</price>
+            <price>{{ price_yandex }}</price>
         </offer>
         {% endif %}{% endif %}{% endfor %}
     </offers>
