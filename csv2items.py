@@ -109,6 +109,7 @@ active: {'true' if (row['Активен'] == 'да') else 'false'}
 stock: {stock_str}
 wildberries: false
 ozon: false
+kaspi: false
 aliexpress: false
 youla: {youla_str}
 ---
