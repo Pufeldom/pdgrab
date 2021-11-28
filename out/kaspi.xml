@@ -10,7 +10,7 @@ permalink: /out/kaspi.xml
     <merchantid>Pufeldom</merchantid>
     <offers>
     <!-- Товары -->
-{% for item in site.items %}{% if item.active and item.image %}{% capture devnull %}
+{% for item in site.items %}{% if item.active and item.kaspi %}{% capture devnull %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
     {% assign preprice_kaspi = item.price | times:ratio | round:0  %}
     {% assign surcharge_kaspi = preprice_kaspi | times:site.data.kaspi.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
