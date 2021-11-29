@@ -1,8 +1,8 @@
 packaging: 90
-delivery: 200
+delivery: 0
 fee: 8
 processing: 
-highway: 2199
+highway: 381
 the_last_mile: 
 return_of_goods: 
 categories:
