@@ -5,6 +5,7 @@ processing:
 highway: 381
 the_last_mile: 
 return_of_goods: 
+exchange_rate: 5.87
 categories:
   Пуфы: pufi
 title_to_category:

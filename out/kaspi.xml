@@ -14,7 +14,7 @@ permalink: /out/kaspi.xml
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
     {% assign preprice_kaspi = item.price | times:ratio | round:0  %}
     {% assign surcharge_kaspi = preprice_kaspi | times:site.data.kaspi.fee | divided_by:100.0 | plus:site.data.yandexmarket.processing | plus:site.data.yandexmarket.highway | plus:site.data.yandexmarket.the_last_mile | plus:site.data.yandexmarket.return_of_goods | plus:site.data.yandexmarket.packaging | plus:site.data.yandexmarket.delivery %}
-    {% assign price_kaspi = preprice_kaspi | plus:surcharge_kaspi | round:0 %}
+    {% assign price_kaspi = preprice_kaspi | plus:surcharge_kaspi | times:site.data.kaspi.exchange_rate | round:0 %}
 {% endcapture %}{% assign devnull = nil %}
         <offer sku="{{ item.slug }}">
             <model>{{ item.title }}</model>
