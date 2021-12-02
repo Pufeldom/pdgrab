@@ -1,7 +1,7 @@
-packaging: 90
+packaging: 0
 delivery: 50
 fee: 8
 processing: 45
-highway: 255
+highway: 210
 the_last_mile: 200
-return_of_goods: 17
+return_of_goods: 230
