@@ -1,13 +1,13 @@
 ---
 ---
-{% include csv_header.html type="ozon" %}{% for item in site.items %}{% if item.ozon %}{% capture devnull %}
+{% include csv_header.html type="ozon" %}{% for item in site.items %}{% if item.ozon and item.section != "Подушки" %}{% capture devnull %}
     {% assign image = item.image | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign gallery = item.gallery | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign depth_brutto = item.depth | times:10 %}
     {% assign height_brutto = item.height | times:10 %}
     {% assign width_brutto = item.width | times:10 %}
     {% assign weight_gram = item.weight | times:1000 %}
-    {% assign weight_gram_brutto = weight_gram | plus:0 | times:1 %}
+    {% assign weight_gram_brutto = weight_gram | plus:700 | times:1 %}
     {% assign surcharge_ozon = item.price | times:site.data.ozon.fee | divided_by:100.0 | plus:site.data.ozon.processing | plus:site.data.ozon.highway | plus:site.data.ozon.the_last_mile | plus:site.data.ozon.return_of_goods | plus:site.data.ozon.packaging | plus:site.data.ozon.delivery %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
     {% assign old_price_ozon = surcharge_ozon | devived_by:ratio | plus:item.price | round:0%}
