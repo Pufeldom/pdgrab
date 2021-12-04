@@ -118,7 +118,7 @@ wildberries:
     Баркод: barcode
     Количество: quantity
 
-ozon:
+ozon.poof:
   delimiter: ','
   cols:
     №: number
@@ -173,6 +173,56 @@ ozon:
     Объединить на одной карточке: merger
     Количество заводских упаковок: multiplicity
     Класс опасности товара: danger_class
+    Ошибка: mistake
+    Предупреждение: warning
+
+ozon.pillow:
+  delimiter: ','
+  cols:
+    №: number
+    Артикул*: articleozon
+    Название товара: title
+    Цена, руб.*: discounted_price
+    Цена до скидки, руб.: price
+    Цена с Ozon Premium, руб.: price_premium
+    НДС, %*: vat
+    Ozon ID: ozon_id
+    Коммерческий тип*: kommerce_type
+    Штрихкод (Серийный номер / EAN): barcode
+    Вес в упаковке, г: weight_brutto
+    Ширина упаковки, мм: depth_brutto
+    Высота упаковки, мм: height_brutto
+    Длина упаковки, мм: width_brutto
+    Ссылка на главное фото: large_pic
+    Ссылки на дополнительные фото: gallery
+    Ссылки на фото 360: photo_360
+    Артикул фото: article_photo
+    Тип*: item_type
+    Бренд*: brend
+    Название модели*: model_name
+    Материал наполнителя*: filler
+    Размерность*: size
+    Аннотация: description
+    Комплектация: equipment
+    Количество предметов в комплекте: quantity
+    Признак 18+: sign_18
+    Товар подлежит обязательной маркировке: labeling
+    Rich-контент JSON: JSON
+    Название принта: print
+    Код ОКПД/ТН ВЭД текстиль: TNVED
+    Объединить на одной карточке: merger
+    Цвет товара: color
+    Название цвета: color_name
+    Образец цвета: color_sample
+    Материал чехла: material_cover
+    Материал наполнителя чехла: filler
+    Отделка: finishing
+    Вид принта: type_of_print
+    Серии: batch
+    Гарантия: warranty
+    Страна-изготовитель: country
+    Класс опасности товара: danger_class
+    Количество заводских упаковок: multiplicity
     Ошибка: mistake
     Предупреждение: warning
 

@@ -1,6 +1,6 @@
 ---
 ---
-{% include csv_header.html type="ozon" %}{% for item in site.items %}{% if item.ozon and item.section != "Подушки" %}{% capture devnull %}
+{% include csv_header.html type="ozon.poof" %}{% for item in site.items %}{% if item.ozon and item.section != "Подушки" %}{% capture devnull %}
     {% assign image = item.image | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign gallery = item.gallery | join:' ' | replace:'https://','' | replace:'http://','' %}
     {% assign depth_brutto = item.depth | times:10 %}
@@ -14,7 +14,7 @@
     {% assign discounted_price_ozon1 = old_price_ozon | times:ratio | round:0 %}
     {% assign discounted_price_ozon2 = discounted_price_ozon1 | times:0.945 | round:0 %}
 {% endcapture %}{% assign devnull=nil %}
-{% include csv_row.html type='ozon'
+{% include csv_row.html type='ozon.poof'
     number=                     ''
     articleozon=                item.slug
     title=                      item.title
