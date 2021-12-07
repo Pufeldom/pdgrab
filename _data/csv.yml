@@ -118,7 +118,7 @@ wildberries:
     Баркод: barcode
     Количество: quantity
 
-ozon.poof:
+ozon_poof:
   delimiter: ','
   cols:
     №: number
@@ -176,7 +176,7 @@ ozon.poof:
     Ошибка: mistake
     Предупреждение: warning
 
-ozon.pillow:
+ozon_pillow:
   delimiter: ','
   cols:
     №: number
