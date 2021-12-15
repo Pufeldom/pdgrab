@@ -42,7 +42,7 @@
         {% assign ribbon = 'В наличии' %}
         {% capture collection %}{{ ribbon }};{{ item.section }}{% endcapture %}
     {% else %}
-        {% assign ribbon = nil %}
+        {% assign ribbon = 'Под заказ' %}
         {% assign collection = item.section %}
     {% endif %}
 
