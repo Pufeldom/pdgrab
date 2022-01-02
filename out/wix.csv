@@ -41,9 +41,6 @@
     {% if item.stock %}
         {% assign ribbon = 'В наличии' %}
         {% capture collection %}{{ ribbon }};{{ item.section }}{% endcapture %}
-    {% if item.section = 'Столики' %}
-        {% assign ribbon = 'От 7 дней' %}
-        {% assign collection = item.section %}
     {% else %}
         {% assign ribbon = 'От 1 дня' %}
         {% assign collection = item.section %}
