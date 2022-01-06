@@ -7,7 +7,7 @@
     {% assign height_brutto = item.height | times:10 %}
     {% assign width_brutto = item.width | times:10 %}
     {% assign weight_gram = item.weight | times:1000 %}
-{% if item.section = "Товары для рукоделия" %}
+{% if item.section == "Товары для рукоделия" %}
     {% assign weight_gram_brutto = weight_gram | plus:0 | times:1 %}
     {% assign surcharge_ozon = item.price | times:site.data.ozon_furniture.fee | divided_by:100.0 | plus:site.data.ozon_furniture.processing | plus:site.data.ozon_furniture.highway | plus:site.data.ozon_furniture.the_last_mile | plus:site.data.ozon_furniture.return_of_goods | plus:site.data.ozon_furniture.packaging | plus:site.data.ozon_furniture.delivery %}
 {% else }
