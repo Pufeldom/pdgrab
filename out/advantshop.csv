@@ -1,0 +1,35 @@
+---
+---
+{% include csv_header.html type="advantshop" %}{% for item in site.items %}{% if item.active %}{% capture devnull %}
+    {% if item.section}{% assign active_product = "+"}{% endif}
+    {% if item.box == "да" OR item.box == "есть"}{% assign box_product = "+"}{% endif}
+    {% if item.cover == "да" OR item.cover == "есть"}{% assign cover_product = "+"}{% endif}
+{% endcapture %}{% assign devnull=nil %}
+{% include csv_row.html type='advantshop'
+    sku=                    item.slug
+    article=                item.slug
+    title=                  item.title
+    price=                  item.price
+    size=                   item.width"х"item.depth"x"item.height
+    color=                  item.color
+    category1=              item.section
+    active=                 active_product
+    currency=               "RUB"
+    photo=                  item.image
+    material=               item.material
+    box=                    box_product
+    cover=                  cover_product
+    legs=                   item.legs
+    discount=               item.discount
+    description=            item.content
+    vendor=                 "Пуфельдом"
+    min=                    "1"
+    multiplicity=           "1"
+    barcode=                item.barcode
+    vat=                    "Без НДС"
+    product=                "Товар"
+    payment=                "Полная предоплата"
+    warranty_period=        "1 год"
+
+%}{% endif %}{% endfor %}
+
