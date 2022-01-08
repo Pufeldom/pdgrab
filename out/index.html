@@ -69,7 +69,7 @@
 {% assign surcharge_ozon = item.price | times:site.data.ozon_furniture.fee | divided_by:100.0 | plus:site.data.ozon_furniture.processing | plus:site.data.ozon_furniture.highway | plus:site.data.ozon_furniture.the_last_mile | plus:site.data.ozon_furniture.return_of_goods | plus:site.data.ozon_furniture.packaging | plus:site.data.ozon_furniture.delivery %}
 {% endif %}
 {% if item.section == "Подушки" %}
-{% assign surcharge_ozon = item.price | times:site.data.ozon_pilows.fee | divided_by:100.0 | plus:site.data.ozon_pilows.processing | plus:site.data.ozon_pilows.highway | plus:site.data.ozon_pilows.the_last_mile | plus:site.data.ozon_pilows.return_of_goods | plus:site.data.ozon_pilows.packaging | plus:site.data.ozon_pilows.delivery %}
+{% assign surcharge_ozon = item.price | times:site.data.ozon_pillows.fee | divided_by:100.0 | plus:site.data.ozon_pillows.processing | plus:site.data.ozon_pillows.highway | plus:site.data.ozon_pillows.the_last_mile | plus:site.data.ozon_pillows.return_of_goods | plus:site.data.ozon_pillows.packaging | plus:site.data.ozon_pillows.delivery %}
 {% endif %}
 {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
 {% assign old_price_ozon = surcharge_ozon | devived_by:ratio | plus:item.price | round:0%}
