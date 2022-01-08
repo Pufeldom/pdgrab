@@ -10,8 +10,7 @@
     {% assign weight_gram_brutto = weight_gram | plus:700 | times:1 %}
     {% assign surcharge_ozon = item.price | times:site.data.ozon_poof.fee | divided_by:100.0 | plus:site.data.ozon_poof.processing | plus:site.data.ozon_poof.highway | plus:site.data.ozon_poof.the_last_mile | plus:site.data.ozon_poof.return_of_goods | plus:site.data.ozon_poof.packaging | plus:site.data.ozon_poof.delivery %}
 {% if item.section == "Товары для рукоделия" %}
-    {% assign weight_gram_brutto = weight_gram | plus:0 | times:1 %}
-    {% assign surcharge_ozon = item.price | times:site.data.ozon_furniture.fee | divided_by:100.0 | plus:site.data.ozon_furniture.processing | plus:site.data.ozon_furniture.highway | plus:site.data.ozon_furniture.the_last_mile | plus:site.data.ozon_furniture.return_of_goods | plus:site.data.ozon_furniture.packaging | plus:site.data.ozon_furniture.delivery %}
+{% assign surcharge_ozon = item.price | times:site.data.ozon_furniture.fee | divided_by:100.0 | plus:site.data.ozon_furniture.processing | plus:site.data.ozon_furniture.highway | plus:site.data.ozon_furniture.the_last_mile | plus:site.data.ozon_furniture.return_of_goods | plus:site.data.ozon_furniture.packaging | plus:site.data.ozon_furniture.delivery %}
 {% endif %}
     {% assign ratio = 1 | times:100.0 | minus:item.discount | divided_by:100.0 %}
     {% assign old_price_ozon = surcharge_ozon | devived_by:ratio | plus:item.price | round:0%}
