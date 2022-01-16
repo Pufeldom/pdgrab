@@ -82,6 +82,7 @@ youla:\s*([\S\s]*?)\n---',
             dest_file_content = f"""---
 parent: 
 handleId: 
+fieldType: Product
 hru: {row['Символьный код']}
 title: {row['Название']}
 price: {int(float(row['Цена']))}
