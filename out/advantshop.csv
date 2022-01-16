@@ -4,13 +4,14 @@
     {% if item.section}{% assign active_product = "+"}{% endif}
     {% if item.box == "да" OR item.box == "есть"}{% assign box_product = "+"}{% endif}
     {% if item.cover == "да" OR item.cover == "есть"}{% assign cover_product = "+"}{% endif}
+    {% assign size = item.width | append:'x' | append:item.depth | append:'x' | append:item.height}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='advantshop'
     sku=                    item.slug
     article=                item.slug
     title=                  item.title
     price=                  item.price
-    size=                   item.width"х"item.depth"x"item.height
+    size=                   size
     color=                  item.color
     category1=              item.section
     active=                 active_product
