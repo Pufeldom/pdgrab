@@ -32,4 +32,3 @@
     warranty_period=        "1 год"
 
 %}{% endif %}{% endfor %}
-

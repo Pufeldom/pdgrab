@@ -81,6 +81,7 @@ youla:\s*([\S\s]*?)\n---',
             # Build new destination content
             dest_file_content = f"""---
 parent: 
+handleId: 
 hru: {row['Символьный код']}
 title: {row['Название']}
 price: {int(float(row['Цена']))}
