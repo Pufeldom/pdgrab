@@ -1,10 +1,10 @@
 ---
 ---
 {% include csv_header.html type="advantshop" %}{% for item in site.items %}{% if item.active %}{% capture devnull %}
-    {% if item.section}{% assign active_product = "+"}{% endif}
-    {% if item.box == "да" OR item.box == "есть"}{% assign box_product = "+"}{% endif}
-    {% if item.cover == "да" OR item.cover == "есть"}{% assign cover_product = "+"}{% endif}
-    {% assign size = item.width | append:'x' | append:item.depth | append:'x' | append:item.height}
+    {% if item.section %}{% assign active_product = "+" %}{% endif %}
+    {% if item.box == "да" OR item.box == "есть" %}{% assign box_product = "+" %}{% endif %}
+    {% if item.cover == "да" OR item.cover == "есть" %}{% assign cover_product = "+" %}{% endif %}
+    {% assign size = item.width | append:'x' | append:item.depth | append:'x' | append:item.height %}
 {% endcapture %}{% assign devnull=nil %}
 {% include csv_row.html type='advantshop'
     sku=                    item.slug
