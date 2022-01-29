@@ -2,7 +2,7 @@
 ---
 {% include csv_header.html type="own" %}{% for item in site.items %}{% capture devnull %}
 {% endcapture %}{% assign devnull=nil %}
-{% include csv_row.html type='advantshop'
+{% include csv_row.html type='own'
     parent=                 item.parent
     handleId=               item.handleId
     fieldType=              item.fieldType
