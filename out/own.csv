@@ -1,0 +1,43 @@
+---
+---
+{% include csv_header.html type="own" %}{% for item in site.items %}{% capture devnull %}
+{% endcapture %}{% assign devnull=nil %}
+{% include csv_row.html type='advantshop'
+    parent=                 item.parent
+    handleId=               item.handleId
+    fieldType=              item.fieldType
+    hru=                    item.hru
+    title=                  item.title
+    price=                  item.price
+    discount=               item.discount
+    section=                item.section
+    color=                  item.color
+    barcode=                item.barcode
+    articlewildberries=     item.articlewildberries
+    articlealiexpress=      item.articlealiexpress
+    cover=                  item.cover
+    width=                  item.width
+    depth=                  item.depth
+    height=                 item.height
+    material=               item.material
+    legs=                   item.legs
+    legs_color=             item.legs_color
+    foam=                   item.foam
+    box=                    item.box
+    martindale=             item.martindale
+    density=                item.density
+    weight=                 item.weight
+    pmurl=                  item.pmurl
+    image=                  item.image
+    gallery=                item.gallery
+    video=                  item.video
+    active=                 item.active
+    stock=                  item.stock
+    wildberries=            item.wildberries
+    ozon=                   item.ozon
+    kaspi=                  item.kaspi
+    aliexpress=             item.aliexpress
+    youla=                  item.youla
+    content=                item.content
+
+%}{% endif %}{% endfor %}
