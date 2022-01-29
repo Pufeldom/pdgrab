@@ -340,40 +340,40 @@ advantshop:
 own:
   delimiter: ','
   cols:
-    Родитель:               parent
-    ID:                     handleId
-    Тип поля:               fieldType
-    Артикл:                 hru
-    Название:               title
-    Старая цена:            price
-    Скидка:                 discount
-    Категория:              section
-    Цвет:                   color
-    Штрихкод:               barcode
-    Артикл WB:              articlewildberries
-    Артикл Ali:             articlealiexpress
-    Цвет:                   cover
-    Ширина:                 width
-    Глубина:                depth
-    Высота:                 height
-    Материал обивки:        material
-    Материал ножек:         legs
-    Цвет ножек:             legs_color
-    Поролон:                foam
-    Ниша:                   box
-    Тест Мартиндейла:       martindale
-    Плотность:              density
-    Вес:                    weight
-    Фото предпросмотра:     pmurl
-    Фото главное:           image
-    Галеря:                 gallery
-    Видео:                  video
-    Активность:             active
-    Остаток:                stock
-    Активность WB:          wildberries
-    Активность Ozon:        ozon
-    Активность Kaspi:       kaspi
-    Активность Ali:         aliexpress
-    Активнось Юла:          youla
-    Описание:               content
+    Родитель: parent
+    ID: handleId
+    Тип поля: fieldType
+    Артикл: hru
+    Название: title
+    Старая цена: price
+    Скидка: discount
+    Категория: section
+    Цвет: color
+    Штрихкод: barcode
+    Артикл WB: articlewildberries
+    Артикл Ali: articlealiexpress
+    Цвет: cover
+    Ширина: width
+    Глубина: depth
+    Высота: height
+    Материал обивки: material
+    Материал ножек: legs
+    Цвет ножек: legs_color
+    Поролон: foam
+    Ниша: box
+    Тест Мартиндейла: martindale
+    Плотность: density
+    Вес: weight
+    Фото предпросмотра: pmurl
+    Фото главное: image
+    Галеря: gallery
+    Видео: video
+    Активность: active
+    Остаток: stock
+    Активность WB: wildberries
+    Активность Ozon: ozon
+    Активность Kaspi: kaspi
+    Активность Ali: aliexpress
+    Активнось Юла: youla
+    Описание: content
     
