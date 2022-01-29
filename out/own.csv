@@ -40,4 +40,4 @@
     youla=                  item.youla
     content=                item.content
 
-%}{% endif %}{% endfor %}
+%}{% endfor %}
