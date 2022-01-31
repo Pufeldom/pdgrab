@@ -44,7 +44,6 @@
     {% else %}
         {% assign collection = item.section %}
     {% endif %}
-    {% endif %}
 
     {% assign wix = site.data.wix %}
     {% if wix.collections[item.section] %}
