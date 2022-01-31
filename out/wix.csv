@@ -41,6 +41,9 @@
     {% if item.stock %}
         {% assign ribbon = 'В наличии' %}
         {% capture collection %}{{ ribbon }};{{ item.section }}{% endcapture %}
+    {% else %}
+        {% assign collection = item.section %}
+    {% endif %}
     {% endif %}
 
     {% assign wix = site.data.wix %}
