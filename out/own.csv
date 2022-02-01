@@ -6,7 +6,7 @@
     parent=                 item.parent
     handleId=               item.handleId
     fieldType=              item.fieldType
-    hru=                    item.hru
+    hru=                    item.slug
     title=                  item.title
     price=                  item.price
     discount=               item.discount
