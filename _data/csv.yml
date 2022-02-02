@@ -343,15 +343,15 @@ own:
     Родитель: parent
     ID: handleId
     Тип поля: fieldType
-    Артикл: hru
+    Артикул: hru
     Название: title
     Старая цена: price
     Скидка: discount
     Категория: section
     Цвет: color
     Штрихкод: barcode
-    Артикл WB: articlewildberries
-    Артикл Ali: articlealiexpress
+    Артикул WB: articlewildberries
+    Артикул Ali: articlealiexpress
     Цвет: cover
     Ширина: width
     Глубина: depth
