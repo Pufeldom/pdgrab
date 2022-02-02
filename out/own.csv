@@ -11,7 +11,7 @@
     price=                  item.price
     discount=               item.discount
     section=                item.section
-    color=                  item.color
+    color_name=             item.color
     barcode=                item.barcode
     articlewildberries=     item.articlewildberries
     articlealiexpress=      item.articlealiexpress

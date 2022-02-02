@@ -348,7 +348,7 @@ own:
     Старая цена: price
     Скидка: discount
     Категория: section
-    Цвет: color
+    Цвет: color_name
     Штрихкод: barcode
     Артикул WB: articlewildberries
     Артикул Ali: articlealiexpress
